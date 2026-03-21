@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[INSD]e* | Inquiries in Strategic Design</title>
+<meta property="og:title" content="[INSD]e* | Inquiries in Strategic Design">
+<meta property="og:description" content="A multidisciplinary design practice. Architecture, visualisation, research, strategy. Mangalore, India.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://insd-e.com">
+<meta property="og:image" content="images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="[INSD]e* — a multidisciplinary design practice. Architecture, visualisation, research, strategy. Mangalore, India.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0000FF;--black:#1A1A1A;--white:#FFF;--grey:#CCC;--light:#F5F5F5}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;color:var(--black);background:var(--white);overflow-x:hidden}
+.mono{font-family:'Space Mono',monospace}
+.insde-mark{font-family:'Poppins',sans-serif!important;font-weight:700!important}
+.insde-mark .ast{color:var(--blue);font-size:0.65em;vertical-align:super}
+
+/* LANDING */
+#landing{position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--blue);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden}
+#landing-ast{font-family:'Poppins',sans-serif;font-weight:700;color:var(--white);font-size:72px;z-index:2;line-height:1;display:flex;align-items:center;justify-content:center;animation:astBlink 2.5s ease-in-out infinite}
+#landing-ast.clicked{animation:none}
+@keyframes astBlink{0%,100%{opacity:1}50%{opacity:0.3}}
+#landing-circle{position:absolute;top:50%;left:50%;width:40px;height:40px;margin-top:-20px;margin-left:-20px;background:var(--white);border-radius:50%;transform:scale(0);z-index:1}
+#landing-circle.expand{animation:circleExpand 2s cubic-bezier(0.22,1,0.36,1) forwards}
+@keyframes circleExpand{0%{transform:scale(0)}100%{transform:scale(80)}}
+#landing.fade-out{opacity:0;transition:opacity 0.5s ease}
+#landing-hint{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);transition:opacity 0.3s;z-index:3}
+#landing-hint.hide{opacity:0}
+#landing.gone{display:none}
+
+/* NAV */
+.site-nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;position:sticky;top:0;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);z-index:100;border-bottom:0.5px solid var(--grey)}
+.nav-logo{cursor:pointer;font-size:18px}
+.nav-links{display:flex;gap:1.8rem}
+.nav-links a{font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:#999;text-decoration:none;transition:color 0.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--black)}
+
+/* LAYOUT */
+.container{max-width:960px;margin:0 auto;padding:0 3rem}
+.section{padding:5rem 0}
+.section-num{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--grey);margin-bottom:0.5rem}
+.section-title{font-family:'Space Mono',monospace;font-size:20px;text-transform:uppercase;font-weight:700;margin-bottom:2rem;letter-spacing:-0.5px}
+.divider{border:none;border-top:0.5px solid var(--grey);margin:0}
+.body-text{font-size:14px;line-height:1.9;color:#555;font-weight:300;max-width:640px}
+.callout{background:var(--light);padding:1.5rem 2rem;margin-top:2rem;border-left:2px solid var(--blue);font-size:12px;line-height:1.8;color:#555;max-width:640px}
+
+/* INTRO */
+.intro-hero{padding:6rem 0 3rem;display:flex;justify-content:space-between;align-items:flex-start;gap:4rem}
+.intro-hero-text{flex:1}
+.intro-mark{font-size:42px;letter-spacing:-2px;line-height:1.1;margin-bottom:1rem}
+.intro-tagline{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#999;margin-bottom:2rem}
+.intro-services{font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--grey);margin-top:3rem}
+.intro-asterisk{font-size:140px;color:var(--blue);line-height:1;font-family:'Poppins',sans-serif;font-weight:700;flex-shrink:0;margin-top:-1rem}
+
+/* DOMAINS LIST */
+.domains-list{margin-top:2rem}
+.domain-item{display:flex;align-items:baseline;gap:1rem;padding:1.25rem 0;border-bottom:0.5px solid var(--grey);cursor:pointer;transition:background 0.2s;padding-left:0.5rem;padding-right:0.5rem}
+.domain-item:first-child{border-top:0.5px solid var(--grey)}
+.domain-item:hover{background:var(--light)}
+.domain-item:hover .domain-arrow{opacity:1;transform:translateX(0)}
+.domain-code{font-family:'Space Mono',monospace;font-size:11px;color:var(--blue);width:50px;flex-shrink:0}
+.domain-name-wrap{flex:1}
+.domain-name{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:-0.3px}
+.domain-sub{font-family:'Space Mono',monospace;font-size:10px;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:0.2rem}
+.domain-arrow{font-family:'Space Mono',monospace;font-size:14px;color:var(--blue);opacity:0;transform:translateX(-8px);transition:all 0.2s}
+.emergence-bar{display:flex;align-items:center;gap:0.75rem;margin-top:2.5rem;padding-top:1.5rem}
+.emergence-label{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#999}
+.emergence-line{flex:1;height:0.5px;background:var(--grey)}
+.emergence-ast{color:var(--blue);font-family:'Poppins',sans-serif;font-weight:700;font-size:18px}
+.emergence-desc{font-size:11px;color:#999;font-style:italic;margin-top:0.5rem}
+
+/* DOMAIN DETAIL */
+.domain-detail{display:none}.domain-detail.active{display:block}
+.domain-header{padding:4rem 0 2rem}
+.domain-header-code{font-family:'Space Mono',monospace;font-size:36px;font-weight:700;text-transform:uppercase;letter-spacing:-1px}
+.domain-header-name{font-family:'Poppins',sans-serif;font-size:16px;color:var(--blue);font-weight:500;margin-top:0.25rem}
+.domain-header-mode{font-family:'Space Mono',monospace;font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;margin-top:0.5rem}
+.nature-label{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--blue);padding-bottom:0.75rem;border-bottom:1px solid var(--blue);margin-bottom:1.5rem}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--grey);border:0.5px solid var(--grey);margin:2rem 0}
+.service-cell{background:var(--white);padding:1.25rem 1.5rem}
+.service-cell-title{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:0.4rem}
+.service-cell-desc{font-size:12px;color:#888;font-weight:300;line-height:1.5}
+.back-link{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);cursor:pointer;display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:2rem;transition:opacity 0.2s}
+.back-link:hover{opacity:0.7}
+
+/* POLAROID */
+.polaroid-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:2rem;max-width:640px}
+.polaroid{background:var(--white);padding:0.6rem 0.6rem 2.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.08),0 0 0 0.5px rgba(0,0,0,0.04);transition:transform 0.3s,box-shadow 0.3s}
+.polaroid:nth-child(odd){transform:rotate(-0.5deg)}.polaroid:nth-child(even){transform:rotate(0.4deg)}
+.polaroid:hover{transform:rotate(0) translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12)}
+.polaroid.interactive{cursor:pointer}
+.polaroid.interactive:hover::after{content:'VIEW PROJECT';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--white);background:rgba(0,0,0,0.6);padding:0.5rem 1rem;z-index:2}
+.polaroid.interactive{position:relative}
+.polaroid-img{width:100%;aspect-ratio:16/9;background:var(--light);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.polaroid-img.portrait{aspect-ratio:3/4}
+.polaroid-img.landscape{aspect-ratio:16/9}
+.polaroid-img img{width:100%;height:100%;object-fit:cover}
+.polaroid-img-placeholder{font-family:'Space Mono',monospace;font-size:9px;color:var(--grey);text-transform:uppercase;letter-spacing:1px;text-align:center;padding:0 1rem}
+.polaroid-caption{padding:0.75rem 0.25rem 0}
+.polaroid-code{font-family:'Space Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:0.5px}
+.polaroid-name{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;margin-top:0.2rem;text-transform:lowercase}
+.polaroid-meta{font-family:'Space Mono',monospace;font-size:8px;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:0.3rem}
+.polaroid-desc{font-size:11px;color:#888;font-weight:300;line-height:1.6;margin-top:0.5rem}
+.polaroid-full{grid-column:1/-1}.polaroid-full .polaroid-img{aspect-ratio:16/7}
+
+/* PROJECT EXPAND OVERLAY */
+.project-overlay{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.97);z-index:200;overflow-y:auto}
+.project-overlay.active{display:block}
+.project-overlay-inner{max-width:960px;margin:0 auto;padding:3rem}
+.project-close{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);cursor:pointer;margin-bottom:2rem;display:inline-block}
+.project-close:hover{opacity:0.7}
+.project-title-bar{margin-bottom:2rem}
+.project-title-code{font-family:'Space Mono',monospace;font-size:11px;color:var(--blue)}
+.project-title-name{font-family:'Poppins',sans-serif;font-size:28px;font-weight:600;margin-top:0.25rem}
+.project-title-meta{font-family:'Space Mono',monospace;font-size:9px;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:0.5rem}
+.project-title-desc{font-size:13px;color:#555;font-weight:300;line-height:1.8;margin-top:1rem;max-width:640px}
+.project-renders{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+.project-render{background:var(--light);overflow:hidden}
+.project-render.landscape{aspect-ratio:16/10;grid-column:1/-1}
+.project-render.portrait{aspect-ratio:3/4}
+.project-render-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:9px;color:var(--grey);text-transform:uppercase;letter-spacing:1px}
+.project-render-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--grey);text-transform:uppercase;letter-spacing:0.5px;margin-top:0.5rem}
+
+/* WORK SECTION - TEXT LIST */
+.work-list{margin-top:2rem}
+.work-item{display:flex;align-items:baseline;gap:1.5rem;padding:1rem 0;border-bottom:0.5px solid var(--grey)}
+.work-item:first-child{border-top:0.5px solid var(--grey)}
+.work-code{font-family:'Space Mono',monospace;font-size:10px;color:var(--blue);width:110px;flex-shrink:0;letter-spacing:0.3px}
+.work-name{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;flex:1;text-transform:lowercase}
+.work-type{font-family:'Space Mono',monospace;font-size:9px;color:#999;text-transform:uppercase;letter-spacing:0.5px;text-align:right;max-width:240px}
+
+/* FOUNDER */
+.founder-layout{display:grid;grid-template-columns:280px 1fr;gap:3rem;margin-top:2rem;align-items:start}
+.founder-portrait{position:relative}
+.founder-portrait-frame{width:280px;height:340px;background:var(--light);border:1px dashed var(--grey);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.founder-portrait-placeholder{font-family:'Space Mono',monospace;font-size:9px;color:var(--grey);text-transform:uppercase;letter-spacing:1px}
+.founder-ast-overlay{position:absolute;top:-2rem;right:-1.5rem;font-size:100px;color:var(--blue);font-family:'Poppins',sans-serif;font-weight:700;line-height:1;z-index:2}
+.founder-name{font-family:'Space Mono',monospace;font-size:18px;font-weight:700;text-transform:uppercase}
+.founder-title{font-family:'Space Mono',monospace;font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:0.5px;margin-top:0.25rem;margin-bottom:1.5rem}
+.founder-bio{font-size:13px;line-height:1.9;color:#555;font-weight:300}
+.founder-details{margin-top:1.5rem;display:flex;flex-direction:column;gap:0.5rem}
+.founder-detail{font-family:'Space Mono',monospace;font-size:9px;color:#888;letter-spacing:0.5px;text-transform:uppercase}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:2rem}
+.contact-office-name{font-family:'Space Mono',monospace;font-size:16px;font-weight:700;text-transform:uppercase;margin-bottom:1rem}
+.contact-line{font-family:'Space Mono',monospace;font-size:11px;color:#555;margin-bottom:0.4rem;letter-spacing:0.3px}
+.contact-line a{color:var(--blue);text-decoration:none}.contact-line a:hover{text-decoration:underline}
+.contact-address-link{text-decoration:none;color:inherit;display:block;transition:color 0.2s}
+.contact-address-link:hover .contact-line{color:var(--blue)}
+.contact-sign{margin-top:3rem}
+.contact-sign-tagline{font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:#999;margin-top:0.5rem}
+
+/* FOOTER */
+.site-footer{padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid var(--grey);max-width:960px;margin:3rem auto 0}
+.footer-text{font-family:'Space Mono',monospace;font-size:9px;color:var(--grey);letter-spacing:0.5px;text-transform:uppercase}
+.footer-ast{color:var(--blue);font-family:'Poppins',sans-serif;font-weight:700;font-size:14px}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.site-nav{padding:1rem 1.5rem}.nav-links{gap:1rem}.nav-links a{font-size:8px}
+.container{padding:0 1.5rem}
+.intro-hero{flex-direction:column;gap:2rem;padding:4rem 0 2rem}.intro-asterisk{font-size:80px}.intro-mark{font-size:28px}
+.polaroid-grid{grid-template-columns:1fr}.polaroid:nth-child(odd),.polaroid:nth-child(even){transform:rotate(0)}
+.founder-layout{grid-template-columns:1fr}.founder-portrait-frame{width:100%;max-width:280px}
+.contact-grid{grid-template-columns:1fr;gap:2rem}
+.services-grid{grid-template-columns:1fr}
+.domain-header-code{font-size:24px}
+.project-renders{grid-template-columns:1fr}
+.work-item{flex-wrap:wrap;gap:0.5rem}.work-type{text-align:left;max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div id="landing" onclick="enterSite()">
+  <span id="landing-ast">*</span>
+  <div id="landing-circle"></div>
+  <div id="landing-hint">ENTER THE INQUIRY</div>
+</div>
+
+<div id="site" style="display:none;">
+
+<nav class="site-nav">
+  <div class="nav-logo insde-mark" onclick="showSection('intro')">[INSD]e<span class="ast">*</span></div>
+  <div class="nav-links">
+    <a href="#" onclick="showSection('intro');return false;">ABOUT</a>
+    <a href="#" onclick="showSection('domains');return false;">DOMAINS</a>
+    <a href="#" onclick="showSection('work');return false;">WORK</a>
+    <a href="#" onclick="showSection('founder');return false;">PEOPLE</a>
+    <a href="#" onclick="showSection('contact');return false;">CONTACT</a>
+  </div>
+</nav>
+
+<!-- INTRO -->
+<div id="sec-intro" class="page-section">
+<div class="container">
+  <div class="intro-hero">
+    <div class="intro-hero-text">
+      <div class="intro-mark insde-mark">[INSD]e<span class="ast">*</span></div>
+      <div class="intro-tagline">INQUIRIES IN STRATEGIC DESIGN</div>
+      <p class="body-text"><span class="insde-mark">[INSD]e<span class="ast">*</span></span> is a multidisciplinary design consultancy practice at its core. The practice brings together thinking from multiple disciplines to create thoughtful and contemporary work rooted in clarity, context and responsible decision making.</p>
+      <p class="body-text" style="margin-top:1rem;">We specialise in design consultancy, visualisations and early stage design strategy for developers, builders and private clients. The practice works in collaboration with engineers, contractors, designers and researchers to deliver refined, contextual and logic driven design outcomes.</p>
+      <div class="intro-services">DESIGN &nbsp;.&nbsp; RESEARCH &nbsp;.&nbsp; CONSULTANCY &nbsp;.&nbsp; COLLABORATIONS</div>
+    </div>
+    <div class="intro-asterisk">*</div>
+  </div>
+  <div class="callout">The name operates as a two-part system: INSD is the stable intellectual core; e* is a mutable suffix that adapts to context without fragmenting the identity. The asterisk signals openness. The practice begins with inquiry before it arrives at form.</div>
+</div>
+<hr class="divider" style="margin-top:4rem;">
+</div>
+
+<!-- DOMAINS -->
+<div id="sec-domains" class="page-section">
+<div class="container"><div class="section">
+  <div class="section-num">02 &nbsp; DOMAINS OF INQUIRY</div>
+  <div class="section-title">THE E* SYSTEM</div>
+  <p class="body-text">These are not departments, service lines, or business units. They are modes of inquiry. A project may span more than one domain.</p>
+  <div class="domains-list">
+    <div class="domain-item" onclick="showDomain('env')"><div class="domain-code">eNV</div><div class="domain-name-wrap"><div class="domain-name">ENVIRONMENTS</div><div class="domain-sub">Architecture & Spatial Design</div></div><div class="domain-arrow">&rarr;</div></div>
+    <div class="domain-item" onclick="showDomain('exp')"><div class="domain-code">eXP</div><div class="domain-name-wrap"><div class="domain-name">EXPERIENCES</div><div class="domain-sub">Visualisation & Immersive Media</div></div><div class="domain-arrow">&rarr;</div></div>
+    <div class="domain-item" onclick="showDomain('epi')"><div class="domain-code">ePI</div><div class="domain-name-wrap"><div class="domain-name">EPISTEMICS</div><div class="domain-sub">Research & Strategic Consulting</div></div><div class="domain-arrow">&rarr;</div></div>
+    <div class="domain-item" onclick="showDomain('edu')"><div class="domain-code">eDU</div><div class="domain-name-wrap"><div class="domain-name">EDUCATION</div><div class="domain-sub">Academic Engagements</div></div><div class="domain-arrow">&rarr;</div></div>
+    <div class="domain-item" onclick="showDomain('exm')"><div class="domain-code">eXM</div><div class="domain-name-wrap"><div class="domain-name">EXPERIMENTS</div><div class="domain-sub">Speculative & Experimental Design</div></div><div class="domain-arrow">&rarr;</div></div>
+    <div class="domain-item" onclick="showDomain('exc')"><div class="domain-code">eXC</div><div class="domain-name-wrap"><div class="domain-name">EXCHANGES</div><div class="domain-sub">Public Programming & Activation</div></div><div class="domain-arrow">&rarr;</div></div>
+    <div class="domain-item" onclick="showDomain('eye')"><div class="domain-code">eYE</div><div class="domain-name-wrap"><div class="domain-name">EYE</div><div class="domain-sub">Visual Curation & Art Sourcing</div></div><div class="domain-arrow">&rarr;</div></div>
+  </div>
+  <div class="emergence-bar"><div class="emergence-label">EMERGENCE</div><div class="emergence-line"></div><div class="emergence-ast">*</div></div>
+  <div class="emergence-desc">the root of all existence. the condition through which everything connects.</div>
+</div></div>
+<hr class="divider">
+</div>
+
+<!-- DOMAIN DETAILS -->
+<div id="sec-domain-detail" class="page-section" style="display:none;">
+<div class="container">
+<div style="padding:2rem 0 0;"><span class="back-link" onclick="showSection('domains')">&larr; ALL DOMAINS</span></div>
+
+<!-- eNV -->
+<div id="domain-env" class="domain-detail">
+<div class="domain-header"><div class="domain-header-code">INSD-eNV</div><div class="domain-header-name">environments</div><div class="domain-header-mode">ARCHITECTURE & SPATIAL DESIGN CONSULTANCY</div></div>
+<hr class="divider">
+<div class="section" style="padding-top:2rem;">
+<div class="nature-label">NATURE OF WORK</div>
+<p class="body-text">INSD-eNV is the primary built-environment arm of the practice. It covers the full scope of residential architecture, interior design, spatial strategy, developer consultancy, and site advisory from first brief to construction delivery.</p>
+<p class="body-text" style="margin-top:1rem;">The work begins before the drawing does. Every project starts with an understanding of the site, the client, and the context. Architecture here is not a product delivered at the end of a process. It is the process.</p>
+<div class="polaroid-grid" style="margin-top:3rem;">
+  <div class="polaroid polaroid-full interactive" onclick="openProject('env001')"><div class="polaroid-img"><div class="x-done"><img src="images/env-001-south-elevation.jpg" alt="South Elevation" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eNV.2026.001</div><div class="polaroid-name">The Engineer's Residence</div><div class="polaroid-meta">MANGALORE | 2026 | ARCHITECTURE + INTERIOR DESIGN | 2,000 SQFT</div><div class="polaroid-desc">Residential commission covering full architectural and interior design services for a home in coastal Mangalore.</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/env-004-community-centre.jpg" alt="Community Centre" style="width:100%;height:100%;object-fit:cover;"></div><div class="polaroid-caption"><div class="polaroid-code">eNV.2026.004</div><div class="polaroid-name">The Community Centre</div><div class="polaroid-meta">BANTWAL | 2026 | ARCHITECTURE | 5,000 SQFT</div><div class="polaroid-desc">Conceptual design proposal for a community centre with sustainable materials.</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/env-008-villa-hyderabad.jpg" alt="Villa Hyderabad" style="width:100%;height:100%;object-fit:cover;"></div><div class="polaroid-caption"><div class="polaroid-code">eNV.2026.008</div><div class="polaroid-name">The Villa in Hyderabad</div><div class="polaroid-meta">HYDERABAD | 2026 | ARCHITECTURE | 20,000 SQFT</div><div class="polaroid-desc">Conceptual design proposal covering full architectural and interior design services.</div></div></div>
+</div>
+</div>
+</div>
+
+<!-- eXP -->
+<div id="domain-exp" class="domain-detail">
+<div class="domain-header"><div class="domain-header-code">INSD-eXP</div><div class="domain-header-name">experiences</div><div class="domain-header-mode">VISUALISATION & IMMERSIVE MEDIA</div></div>
+<hr class="divider">
+<div class="section" style="padding-top:2rem;">
+<div class="nature-label">NATURE OF WORK</div>
+<p class="body-text">INSD-eXP translates design intent into spatial experience before a single wall is built. Visualisation here is not a marketing tool applied at the end. It is a design instrument used to test, communicate, and refine spatial ideas at every stage of the process.</p>
+<div class="services-grid">
+  <div class="service-cell"><div class="service-cell-title">ARCHITECTURAL RENDERS</div><div class="service-cell-desc">Photorealistic exterior and interior visualisation</div></div>
+  <div class="service-cell"><div class="service-cell-title">SPATIAL STORYTELLING</div><div class="service-cell-desc">Narrative-led presentation of a design</div></div>
+  <div class="service-cell"><div class="service-cell-title">VR WALKTHROUGHS</div><div class="service-cell-desc">Immersive and interactive walkthroughs</div></div>
+  <div class="service-cell"><div class="service-cell-title">BRAND IDENTITY</div><div class="service-cell-desc">Visual systems for spaces and practices</div></div>
+</div>
+<div class="polaroid-grid" style="margin-top:3rem;">
+  <div class="polaroid interactive" onclick="openProject('exp003')"><div class="polaroid-img"><div class="x-done"><img src="images/exp-003-m-house.jpg" alt="M House" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eXP.2026.003</div><div class="polaroid-name">M House, Ahmedabad</div><div class="polaroid-meta">AHMEDABAD | 2026 | COLLABORATION WITH ARCHITECTONICA PROCREATE</div><div class="polaroid-desc">Full architectural and interior visualisation with spatial storytelling.</div></div></div>
+  <div class="polaroid interactive" onclick="openProject('exp001')"><div class="polaroid-img"><div class="x-done"><img src="images/exp-001-thindi-mane.jpg" alt="Thindi Mane" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eXP.2026.001</div><div class="polaroid-name">Bantwala Thindi Mane</div><div class="polaroid-meta">BANTWAL | 2026 | NAMING + BRAND IDENTITY + VISUAL SYSTEM</div><div class="polaroid-desc">Complete brand identity for a regional food production business.</div></div></div>
+</div>
+</div>
+</div>
+
+<!-- ePI -->
+<div id="domain-epi" class="domain-detail">
+<div class="domain-header"><div class="domain-header-code">INSD-ePI</div><div class="domain-header-name">epistemics</div><div class="domain-header-mode">RESEARCH & STRATEGIC DESIGN CONSULTING</div></div>
+<hr class="divider">
+<div class="section" style="padding-top:2rem;">
+<div class="nature-label">NATURE OF WORK</div>
+<p class="body-text">INSD-ePI is the intellectual backbone of <span class="insde-mark">[INSD]e<span class="ast">*</span></span>. It is where the practice thinks out loud through housing research, urban feasibility studies, strategic design consulting, and retainer-based advisory.</p>
+<div class="services-grid">
+  <div class="service-cell"><div class="service-cell-title">DESIGN STRATEGY & POSITIONING</div><div class="service-cell-desc">Translating spatial problems into strategies</div></div>
+  <div class="service-cell"><div class="service-cell-title">DESIGN CONSULTING</div><div class="service-cell-desc">Design support for complex spatial problems</div></div>
+  <div class="service-cell"><div class="service-cell-title">ARCHITECTURAL RESEARCH</div><div class="service-cell-desc">Evidence-based investigation into architecture</div></div>
+  <div class="service-cell"><div class="service-cell-title">INSTITUTIONAL PARTNERSHIPS</div><div class="service-cell-desc">Retainer-based strategic design advisory</div></div>
+</div>
+<div class="polaroid-grid" style="margin-top:3rem;">
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/epi-001-asf-report.jpg" alt="ASF Report" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">ePI.2025.001</div><div class="polaroid-name">ahmedabad shopping festival</div><div class="polaroid-meta">2025 | RESEARCH + DESIGN ADVISORY | IN ASSOCIATION WITH PwC</div><div class="polaroid-desc">Narrative and strategy report and presentation.</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/epi-001-asf-visual.jpg" alt="ASF Visual" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">ePI.2025.001</div><div class="polaroid-name">asf | visual language</div><div class="polaroid-meta">2025 | COLLATERAL DESIGN | PwC</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/epi-001-asf-ticket.jpg" alt="ASF Tickets" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">ePI.2025.001</div><div class="polaroid-name">asf | event tickets</div><div class="polaroid-meta">2025 | EVENT COLLATERAL | PwC</div></div></div>
+  <div class="polaroid"><div class="polaroid-img" style="aspect-ratio:4/5;"><div class="x-done"><img src="images/epi-001-asf-pass.jpg" alt="ASF Pass" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">ePI.2025.001</div><div class="polaroid-name">asf | event pass</div><div class="polaroid-meta">2025 | EVENT COLLATERAL | PwC</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/epi-001-asf-calendar.jpg" alt="ASF Calendar" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">ePI.2025.001</div><div class="polaroid-name">asf | event calendar</div><div class="polaroid-meta">2025 | EVENT COLLATERAL | PwC</div></div></div>
+</div>
+</div>
+</div>
+
+<!-- eDU -->
+<div id="domain-edu" class="domain-detail">
+<div class="domain-header"><div class="domain-header-code">INSD-eDU</div><div class="domain-header-name">education</div><div class="domain-header-mode">ACADEMIC ENGAGEMENTS & KNOWLEDGE TRANSMISSION</div></div>
+<hr class="divider">
+<div class="section" style="padding-top:2rem;">
+<div class="nature-label">NATURE OF WORK</div>
+<p class="body-text">INSD-eDU is where <span class="insde-mark">[INSD]e<span class="ast">*</span></span> transmits what it knows. It covers visiting faculty engagements, design-technology workshops, critical thinking seminars, and academic collaborations. Currently anchored to Nitte Institute of Architecture in Mangalore.</p>
+</div>
+</div>
+
+<!-- eXM -->
+<div id="domain-exm" class="domain-detail">
+<div class="domain-header"><div class="domain-header-code">INSD-eXM</div><div class="domain-header-name">experiments</div><div class="domain-header-mode">SPECULATIVE & EXPERIMENTAL DESIGN</div></div>
+<hr class="divider">
+<div class="section" style="padding-top:2rem;">
+<div class="nature-label">NATURE OF WORK</div>
+<p class="body-text">INSD-eXM is where <span class="insde-mark">[INSD]e<span class="ast">*</span></span> works without a brief. It is the domain of speculative design, competition entries, and design research.</p>
+<div class="polaroid-grid" style="margin-top:3rem;">
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/exm-001-tilantar-aerial.jpg" alt="Tilantar Aerial" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eXM.2025.001</div><div class="polaroid-name">tilantar | micro library</div><div class="polaroid-meta">2025 | COMPETITION ENTRY | GDK DESIGNS + xPDS ARCHITECTS</div><div class="polaroid-desc">Experimental design for the Agariya salt workers.</div></div></div>
+  <div class="polaroid"><div class="polaroid-img" style="aspect-ratio:7/5;"><div class="x-done"><img src="images/exm-001-tilantar-interior.jpg" alt="Tilantar Interior" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eXM.2025.001</div><div class="polaroid-name">tilantar | interior</div><div class="polaroid-meta">VISUALISATION BY INSD-eXP</div></div></div>
+  <div class="polaroid"><div class="polaroid-img" style="aspect-ratio:7/5;"><div class="x-done"><img src="images/exm-001-tilantar-courtyard.jpg" alt="Tilantar Courtyard" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eXM.2025.001</div><div class="polaroid-name">tilantar | courtyard</div><div class="polaroid-meta">VISUALISATION BY INSD-eXP</div></div></div>
+</div>
+</div>
+</div>
+
+<!-- eXC -->
+<div id="domain-exc" class="domain-detail">
+<div class="domain-header"><div class="domain-header-code">INSD-eXC</div><div class="domain-header-name">exchanges</div><div class="domain-header-mode">PUBLIC PROGRAMMING & CULTURAL ACTIVATION</div></div>
+<hr class="divider">
+<div class="section" style="padding-top:2rem;">
+<div class="nature-label">NATURE OF WORK</div>
+<p class="body-text">INSD-eXC is the outward social layer of the practice. INSDeR, the first project under this domain, is a recurring encounter format that builds network, generates live spatial research, and creates visibility that no advertisement can.</p>
+</div>
+</div>
+
+<!-- eYE -->
+<div id="domain-eye" class="domain-detail">
+<div class="domain-header"><div class="domain-header-code">INSD-eYE</div><div class="domain-header-name">eye</div><div class="domain-header-mode">VISUAL CURATION, ART SOURCING & PROGRAMMING</div></div>
+<hr class="divider">
+<div class="section" style="padding-top:2rem;">
+<div class="nature-label">NATURE OF WORK</div>
+<p class="body-text">INSD-eYE is the aesthetic intelligence layer of <span class="insde-mark">[INSD]e<span class="ast">*</span></span>. It operates across three modes: sourcing art for spaces, producing curated exhibitions, and developing independent art programming. The art brief is not an afterthought. It is part of the spatial brief from the first conversation.</p>
+<div class="polaroid-grid" style="margin-top:3rem;">
+  <div class="polaroid"><div class="polaroid-img" style="aspect-ratio:7/5;"><div class="x-done"><img src="images/eye-001-foyer.jpg" alt="Foyer" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eYE.2026.001</div><div class="polaroid-name">the curated house</div><div class="polaroid-meta">2026 | INTERIOR DESIGN + ART CURATION | VISUALISATION BY INSD-eXP</div></div></div>
+  <div class="polaroid"><div class="polaroid-img" style="aspect-ratio:7/5;"><div class="x-done"><img src="images/eye-001-bedroom.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eYE.2026.001</div><div class="polaroid-name">the curated house</div></div></div>
+  <div class="polaroid"><div class="polaroid-img" style="aspect-ratio:4/5;"><div class="x-done"><img src="images/eye-001-family-evening.jpg" alt="Family Evening" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eYE.2026.001</div><div class="polaroid-name">the curated house</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/eye-001-lounge.jpg" alt="Lounge" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eYE.2026.001</div><div class="polaroid-name">the curated house</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/eye-001-family.jpg" alt="Family Room" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eYE.2026.001</div><div class="polaroid-name">the curated house</div></div></div>
+  <div class="polaroid"><div class="polaroid-img" style="aspect-ratio:4/5;"><div class="x-done"><img src="images/eye-001-art-room-afternoon.jpg" alt="Art Room Afternoon" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eYE.2026.001</div><div class="polaroid-name">the curated house</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/eye-001-study.jpg" alt="Study" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eYE.2026.001</div><div class="polaroid-name">the curated house</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/eye-001-living.jpg" alt="Living Evening" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eYE.2026.001</div><div class="polaroid-name">the curated house</div></div></div>
+  <div class="polaroid"><div class="polaroid-img"><div class="x-done"><img src="images/eye-001-art-room.jpg" alt="Art Room" style="width:100%;height:100%;object-fit:cover;"></div></div><div class="polaroid-caption"><div class="polaroid-code">eYE.2026.001</div><div class="polaroid-name">the curated house</div></div></div>
+</div>
+</div>
+</div>
+
+</div></div>
+
+<!-- WORK - TEXT LIST -->
+<div id="sec-work" class="page-section">
+<div class="container"><div class="section">
+  <div class="section-num">03 &nbsp; SELECTED WORK</div>
+  <div class="section-title">ACTIVE INQUIRIES</div>
+  <div class="work-list">
+    <div class="work-item"><div class="work-code">eNV.2026.001</div><div class="work-name">the engineer's residence</div><div class="work-type">ARCHITECTURE + INTERIOR DESIGN</div></div>
+    <div class="work-item"><div class="work-code">eNV.2026.003</div><div class="work-name">ice cream parlour</div><div class="work-type">INTERIOR DESIGN + SPATIAL BRANDING</div></div>
+    <div class="work-item"><div class="work-code">eXP.2026.003</div><div class="work-name">m house</div><div class="work-type">ARCHITECTURAL VISUALISATION</div></div>
+    <div class="work-item"><div class="work-code">eXP.2026.001</div><div class="work-name">bantwala thindi mane</div><div class="work-type">NAMING + BRAND IDENTITY</div></div>
+    <div class="work-item"><div class="work-code">eYE.2026.001</div><div class="work-name">the curated house</div><div class="work-type">ART CURATION + VISUALISATION</div></div>
+    <div class="work-item"><div class="work-code">eXM.2026.001</div><div class="work-name">office.insde</div><div class="work-type">DOCUMENTATION + STUDIO SETUP</div></div>
+    <div class="work-item"><div class="work-code">eDU.2026.001</div><div class="work-name">introduction to ai: tools & applications in design</div><div class="work-type">ELECTIVE FOR B.ARCH</div></div>
+  </div>
+</div></div>
+<hr class="divider">
+</div>
+
+<!-- PEOPLE -->
+<div id="sec-founder" class="page-section">
+<div class="container"><div class="section">
+  <div class="section-num">04 &nbsp; PEOPLE</div>
+  <div class="section-title" style="text-transform:none;"><span style="font-family:'Poppins',sans-serif;font-weight:600;font-size:20px;">inside </span><span class="insde-mark" style="font-size:20px;">[INSD]e<span class="ast">*</span></span></div>
+  <div class="founder-layout">
+    <div class="founder-portrait">
+      <div class="founder-portrait-frame"><img src="images/people-shruthadev.jpg" alt="Ar. Shruthadev Bantwal"></div>
+      <div class="founder-ast-overlay" style="font-size:200px;top:0;right:0;transform:translate(50%,-38%);">*</div>
+    </div>
+    <div>
+      <div class="founder-name">AR. SHRUTHADEV BANTWAL</div>
+      <div class="founder-title">FOUNDER</div>
+      <p class="founder-bio">Architect based out of Mangalore, Karnataka. 5 years of professional experience spanning Residential Architecture, Developer projects, Visualisation, and Design Research. Previously at Hiren Patel Architects and Design [HPAD], Ahmedabad and at CEPT University as Teaching Associate. Currently a visiting faculty at Nitte Institute of Architecture and Founder at <span class="insde-mark">[INSD]e<span class="ast">*</span></span> focusing on Strategic Design consultation and contextual driven design.</p>
+      <div class="founder-details">
+        <div class="founder-detail">B.ARCH | NITTE INSTITUTE OF ARCHITECTURE, MANGALORE</div>
+        <div class="founder-detail">COA REG. CA / 2024 / 173290</div>
+      </div>
+    </div>
+  </div>
+  <hr class="divider" style="margin:4rem 0;">
+  <div class="founder-layout">
+    <div class="founder-portrait">
+      <div class="founder-portrait-frame"><img src="images/people-kajal.jpg" alt="Ar. Kajal Diwakar"></div>
+      <div class="founder-ast-overlay" style="font-size:200px;top:0;right:0;transform:translate(50%,-38%);">*</div>
+    </div>
+    <div>
+      <div class="founder-name">AR. KAJAL DIWAKAR</div>
+      <div class="founder-title">CREATIVE DIRECTOR</div>
+      <p class="founder-bio">Architect based out of Ahmedabad, Gujarat. Masters in Housing Design from CEPT University and experience as a Teaching Associate. Experience in Interior Design with a keen interest in art and enhancing spaces using art. Specialisation in art curation and collection, housing design and spatial styling.</p>
+      <div class="founder-details">
+        <div class="founder-detail">B.ARCH + M.ARCH (HOUSING DESIGN) | CEPT UNIVERSITY, AHMEDABAD</div>
+        <div class="founder-detail">PREV. | CEPT UNIVERSITY, TEACHING ASSOCIATE</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+<hr class="divider">
+</div>
+
+<!-- CONTACT -->
+<div id="sec-contact" class="page-section">
+<div class="container"><div class="section">
+  <div class="section-num">05 &nbsp; CONTACT</div>
+  <div class="section-title">GET IN TOUCH</div>
+  <div style="margin-top:2rem;">
+    <a href="https://www.google.com/maps/search/OFFICE.INSDE+SVS+College+Road+Bantwal+574211" target="_blank" rel="noopener" class="contact-address-link" title="View on Google Maps">
+      <div class="contact-line">#4-199, OFFICE.INSDE,</div>
+      <div class="contact-line">SVS COLLEGE ROAD, NR. BANTWAL BYPASS JN.</div>
+      <div class="contact-line">BANTWAL 574-211</div>
+    </a>
+    <div class="contact-line" style="margin-top:0.3rem;"><a href="mailto:office.insde@gmail.com" style="font-family:'Poppins',sans-serif;text-transform:lowercase;font-size:11px;">office.insde@gmail.com</a></div>
+
+    <div style="margin-top:2.5rem;">
+      <div class="contact-line">AR. SHRUTHADEV BANTWAL</div>
+      <div class="contact-line">+91 9743219529 &nbsp; | &nbsp; <a href="mailto:shruthadev@insd-e.com" style="font-family:'Poppins',sans-serif;text-transform:lowercase;font-size:11px;">shruthadev@insd-e.com</a></div>
+      <div style="margin-top:0.3rem;"><a href="https://www.instagram.com/shruthadev_bantwal" target="_blank" rel="noopener" style="font-family:'Poppins',sans-serif;font-size:11px;color:var(--blue);text-decoration:none;text-transform:lowercase;">@shruthadev_bantwal</a></div>
+    </div>
+
+    <div style="margin-top:2.5rem;">
+      <div class="contact-line">AR. KAJAL DIWAKAR</div>
+      <div class="contact-line">+91 9033762739 &nbsp; | &nbsp; <a href="mailto:kajal@insd-e.com" style="font-family:'Poppins',sans-serif;text-transform:lowercase;font-size:11px;">kajal@insd-e.com</a></div>
+      <div style="margin-top:0.3rem;"><a href="https://www.instagram.com/ar.kajal_diwakar" target="_blank" rel="noopener" style="font-family:'Poppins',sans-serif;font-size:11px;color:var(--blue);text-decoration:none;text-transform:lowercase;">@kajal_diwakar</a></div>
+    </div>
+  </div>
+  <div class="contact-sign" style="margin-top:5rem;">
+    <div class="insde-mark" style="font-size:61px;letter-spacing:-2px;line-height:1;">[INSD]e<span class="ast">*</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:20.5px;text-transform:uppercase;letter-spacing:1px;color:var(--black);margin-top:0.5rem;">INQUIRIES IN STRATEGIC DESIGN</div>
+    <div style="font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--black);margin-top:0.4rem;">DESIGN . RESEARCH . CONSULTANCY . COLLABORATIONS</div>
+  </div>
+</div></div>
+</div>
+
+<div class="site-footer">
+  <div class="footer-text">INQUIRIES IN STRATEGIC DESIGN | INSDe LLP | ALL RIGHTS RESERVED</div>
+  <div class="footer-ast">*</div>
+</div>
+
+</div>
+
+<!-- PROJECT OVERLAYS -->
+<div id="overlay-env001" class="project-overlay">
+<div class="project-overlay-inner">
+  <span class="project-close" onclick="closeProject('env001')">&larr; BACK TO eNV</span>
+  <div class="project-title-bar">
+    <div class="project-title-code">eNV.2026.001</div>
+    <div class="project-title-name">The Engineer's Residence</div>
+    <div class="project-title-meta">MADOOR, KOTEKAR | 2026 | ARCHITECTURE + INTERIOR DESIGN | 2,000 SQFT</div>
+    <div class="project-title-desc">Residential commission covering full architectural and interior design services for a home in coastal Mangalore. The project explores contemporary regional materiality through brick jaali, terracotta, and wooden screening elements.</div>
+  </div>
+  <div class="project-renders">
+    <div class="project-render landscape"><div class="x-done"><img src="images/env-001-detail-south.jpg" alt="South Elevation" style="width:100%;height:100%;object-fit:cover;"></div></div>
+    <div class="project-render landscape"><div class="x-done"><img src="images/env-001-detail-aerial.jpg" alt="Aerial View" style="width:100%;height:100%;object-fit:cover;"></div></div>
+    <div class="project-render portrait"><div class="x-done"><img src="images/env-001-detail-entrance.jpg" alt="Entrance" style="width:100%;height:100%;object-fit:cover;"></div></div>
+    <div class="project-render portrait"><div class="x-done"><img src="images/env-001-detail-window.jpg" alt="Kitchen Window" style="width:100%;height:100%;object-fit:cover;"></div></div>
+  </div>
+</div>
+</div>
+
+<div id="overlay-exp003" class="project-overlay">
+<div class="project-overlay-inner">
+  <span class="project-close" onclick="closeProject('exp003')">&larr; BACK TO eXP</span>
+  <div class="project-title-bar">
+    <div class="project-title-code">eXP.2026.003</div>
+    <div class="project-title-name">M House, Ahmedabad</div>
+    <div class="project-title-meta">AHMEDABAD | 2026 | ARCHITECTURE & INTERIOR VISUALISATION | COLLABORATION WITH ARCHITECTONICA PROCREATE</div>
+    <div class="project-title-desc">Full architectural and interior visualisation with spatial storytelling for a high-profile residential project in Ahmedabad.</div>
+  </div>
+  <div class="project-renders" style="grid-template-columns:1fr 1fr;">
+    <div class="project-render" style="aspect-ratio:4/5;"><div class="x-done"><img src="images/exp-003-detail-bathroom.jpg" alt="Bathroom" style="width:100%;height:100%;object-fit:cover;"></div></div>
+    <div class="project-render" style="aspect-ratio:4/5;"><div class="x-done"><img src="images/exp-003-detail-bedroom.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;"></div></div>
+  </div>
+</div>
+</div>
+
+<div id="overlay-exp001" class="project-overlay">
+<div class="project-overlay-inner">
+  <span class="project-close" onclick="closeProject('exp001')">&larr; BACK TO eXP</span>
+  <div class="project-title-bar">
+    <div class="project-title-code">eXP.2026.001</div>
+    <div class="project-title-name">Bantwala Thindi Mane</div>
+    <div class="project-title-meta">BANTWAL | 2026 | NAMING + BRAND IDENTITY + VISUAL SYSTEM</div>
+    <div class="project-title-desc">Complete brand identity for a regional food production business. Naming, logo system, visual language, packaging, and collateral.</div>
+  </div>
+  <div class="project-renders">
+    <div class="project-render landscape"><div class="x-done"><img src="images/exp-001-detail-packaging.jpg" alt="Packaging" style="width:100%;height:100%;object-fit:cover;"></div></div>
+    <div class="project-render landscape"><div class="x-done"><img src="images/exp-001-detail-collateral.jpg" alt="Collateral" style="width:100%;height:100%;object-fit:cover;"></div></div>
+    <div class="project-render portrait"><div class="x-done"><img src="images/exp-001-detail-logo.jpg" alt="Logo" style="width:100%;height:100%;object-fit:cover;"></div></div>
+    <div class="project-render portrait"><div class="x-done"><img src="images/exp-001-detail-brand.jpg" alt="Brand" style="width:100%;height:100%;object-fit:cover;"></div></div>
+  </div>
+</div>
+</div>
+
+<script>
+function enterSite(){
+  var a=document.getElementById('landing-ast'),h=document.getElementById('landing-hint'),l=document.getElementById('landing'),c=document.getElementById('landing-circle');
+  a.classList.add('clicked');
+  h.classList.add('hide');
+  c.classList.add('expand');
+  setTimeout(function(){l.classList.add('fade-out');document.getElementById('site').style.display='block';setTimeout(function(){l.classList.add('gone')},600)},1600);
+}
+function showSection(n){
+  ['intro','domains','domain-detail','work','founder','contact'].forEach(function(s){var e=document.getElementById('sec-'+s);if(e)e.style.display=(s===n)?'block':'none'});
+  document.querySelectorAll('.domain-detail').forEach(function(d){d.classList.remove('active')});
+  if(n!=='domain-detail')window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active')});
+  var m={intro:0,domains:1,work:2,founder:3,contact:4};
+  if(m[n]!==undefined)document.querySelectorAll('.nav-links a')[m[n]].classList.add('active');
+}
+function showDomain(id){
+  showSection('domain-detail');
+  document
