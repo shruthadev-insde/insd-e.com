@@ -89,6 +89,9 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .sgd{font-size:12px;color:#888;font-weight:300;line-height:1.5}
 .bk{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);cursor:pointer;display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:2rem;transition:opacity 0.2s}
 .bk:hover{opacity:0.7}
+.dn-nav{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.5rem;border-top:0.5px solid var(--grey)}
+.dn-nav a{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);cursor:pointer;transition:opacity 0.2s;text-decoration:none}
+.dn-nav a:hover{opacity:0.6}
 
 .pg{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:2rem;max-width:640px}
 .p{background:var(--white);padding:0.6rem 0.6rem 2.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.08),0 0 0 0.5px rgba(0,0,0,0.04);transition:transform 0.3s,box-shadow 0.3s}
@@ -234,6 +237,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
   <div class="p ic" onclick="op('env001')"><div class="pi"><img src="images/env-001-south-elevation.jpg" alt="South Elevation"></div><div class="pc"><div class="pcc">eNV.2026.001</div><div class="pcn">the engineer's residence</div><div class="pcm">MANGALORE | 2026 | ARCHITECTURE + INTERIOR DESIGN | 2,000 SQFT</div><div class="pcd">Residential commission covering full architectural and interior design services for a home in coastal Mangalore.</div></div></div>
   <div class="p"><div class="pi"><img src="images/env-004-community-centre.jpg" alt="Community Centre"></div><div class="pc"><div class="pcc">eNV.2026.004</div><div class="pcn">the community centre</div><div class="pcm">BANTWAL | 2026 | ARCHITECTURE | 5,000 SQFT</div><div class="pcd">Conceptual design proposal for a community centre with sustainable materials.</div></div></div>
   <div class="p"><div class="pi"><img src="images/env-008-villa-hyderabad.jpg" alt="Villa Hyderabad"></div><div class="pc"><div class="pcc">eNV.2026.008</div><div class="pcn">the villa in hyderabad</div><div class="pcm">HYDERABAD | 2026 | ARCHITECTURE | 20,000 SQFT</div><div class="pcd">Conceptual design proposal covering full architectural and interior design services.</div></div></div>
+<div class="dn-nav"><a onclick="dom('eye')">&larr; eYE</a><a onclick="go('domains')">&uarr; ALL DOMAINS</a><a onclick="dom('exp')">eXP &rarr;</a></div>
 </div>
 </div></div>
 
@@ -252,6 +256,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 <div class="pg" style="margin-top:3rem;">
   <div class="p ic" onclick="op('exp003')"><div class="pi"><img src="images/exp-003-m-house.jpg" alt="M House"></div><div class="pc"><div class="pcc">eXP.2026.003</div><div class="pcn">m house, ahmedabad</div><div class="pcm">AHMEDABAD | 2026 | COLLABORATION WITH ARCHITECTONICA PROCREATE</div><div class="pcd">Full architectural and interior visualisation with spatial storytelling.</div></div></div>
   <div class="p ic" onclick="op('exp001')"><div class="pi"><img src="images/exp-001-thindi-mane.jpg" alt="Thindi Mane"></div><div class="pc"><div class="pcc">eXP.2026.001</div><div class="pcn">bantwala thindi mane</div><div class="pcm">BANTWAL | 2026 | NAMING + BRAND IDENTITY + VISUAL SYSTEM</div><div class="pcd">Complete brand identity for a regional food production business.</div></div></div>
+<div class="dn-nav"><a onclick="dom('env')">&larr; eNV</a><a onclick="go('domains')">&uarr; ALL DOMAINS</a><a onclick="dom('epi')">ePI &rarr;</a></div>
 </div>
 </div></div>
 
@@ -273,6 +278,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
   <div class="p"><div class="pi"><img src="images/epi-001-asf-ticket.jpg" alt="ASF Tickets"></div><div class="pc"><div class="pcc">ePI.2025.001</div><div class="pcn">asf | event tickets</div><div class="pcm">2025 | EVENT COLLATERAL | PwC</div></div></div>
   <div class="p"><div class="pi" style="aspect-ratio:4/5;"><img src="images/epi-001-asf-pass.jpg" alt="ASF Pass"></div><div class="pc"><div class="pcc">ePI.2025.001</div><div class="pcn">asf | event pass</div><div class="pcm">2025 | EVENT COLLATERAL | PwC</div></div></div>
   <div class="p"><div class="pi"><img src="images/epi-001-asf-calendar.jpg" alt="ASF Calendar"></div><div class="pc"><div class="pcc">ePI.2025.001</div><div class="pcn">asf | event calendar</div><div class="pcm">2025 | EVENT COLLATERAL | PwC</div></div></div>
+<div class="dn-nav"><a onclick="dom('exp')">&larr; eXP</a><a onclick="go('domains')">&uarr; ALL DOMAINS</a><a onclick="dom('edu')">eDU &rarr;</a></div>
 </div>
 </div></div>
 
@@ -282,6 +288,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 <div class="sc" style="padding-top:2rem;">
 <div class="nl2">NATURE OF WORK</div>
 <p class="bt">INSD-eDU is where <span class="im">[INSD]e<span class="a">*</span></span> transmits what it knows. It covers visiting faculty engagements, design-technology workshops, critical thinking seminars, and academic collaborations. Currently anchored to Nitte Institute of Architecture in Mangalore.</p>
+<div class="dn-nav"><a onclick="dom('epi')">&larr; ePI</a><a onclick="go('domains')">&uarr; ALL DOMAINS</a><a onclick="dom('exm')">eXM &rarr;</a></div>
 </div></div>
 
 <div id="domain-exm" class="dd">
@@ -294,6 +301,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
   <div class="p"><div class="pi"><img src="images/exm-001-tilantar-aerial.jpg" alt="Tilantar Aerial"></div><div class="pc"><div class="pcc">eXM.2025.001</div><div class="pcn">tilantar | micro library</div><div class="pcm">2025 | COMPETITION ENTRY | GDK DESIGNS + xPDS ARCHITECTS</div><div class="pcd">Experimental design for the Agariya salt workers.</div></div></div>
   <div class="p"><div class="pi" style="aspect-ratio:7/5;"><img src="images/exm-001-tilantar-interior.jpg" alt="Tilantar Interior"></div><div class="pc"><div class="pcc">eXM.2025.001</div><div class="pcn">tilantar | interior</div><div class="pcm">VISUALISATION BY INSD-eXP</div></div></div>
   <div class="p"><div class="pi" style="aspect-ratio:7/5;"><img src="images/exm-001-tilantar-courtyard.jpg" alt="Tilantar Courtyard"></div><div class="pc"><div class="pcc">eXM.2025.001</div><div class="pcn">tilantar | courtyard</div><div class="pcm">VISUALISATION BY INSD-eXP</div></div></div>
+<div class="dn-nav"><a onclick="dom('edu')">&larr; eDU</a><a onclick="go('domains')">&uarr; ALL DOMAINS</a><a onclick="dom('exc')">eXC &rarr;</a></div>
 </div>
 </div></div>
 
@@ -303,6 +311,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 <div class="sc" style="padding-top:2rem;">
 <div class="nl2">NATURE OF WORK</div>
 <p class="bt">INSD-eXC is the outward social layer of the practice. INSDeR, the first project under this domain, is a recurring encounter format that builds network, generates live spatial research, and creates visibility that no advertisement can.</p>
+<div class="dn-nav"><a onclick="dom('exm')">&larr; eXM</a><a onclick="go('domains')">&uarr; ALL DOMAINS</a><a onclick="dom('eye')">eYE &rarr;</a></div>
 </div></div>
 
 <div id="domain-eye" class="dd">
@@ -321,6 +330,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
   <div class="p"><div class="pi"><img src="images/eye-001-study.jpg" alt="Study"></div><div class="pc"><div class="pcc">eYE.2026.001</div><div class="pcn">the curated house</div></div></div>
   <div class="p"><div class="pi"><img src="images/eye-001-living.jpg" alt="Living Evening"></div><div class="pc"><div class="pcc">eYE.2026.001</div><div class="pcn">the curated house</div></div></div>
   <div class="p"><div class="pi"><img src="images/eye-001-art-room.jpg" alt="Art Room"></div><div class="pc"><div class="pcc">eYE.2026.001</div><div class="pcn">the curated house</div></div></div>
+<div class="dn-nav"><a onclick="dom('exc')">&larr; eXC</a><a onclick="go('domains')">&uarr; ALL DOMAINS</a><a onclick="dom('env')">eNV &rarr;</a></div>
 </div>
 </div></div>
 
