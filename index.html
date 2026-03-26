@@ -35,7 +35,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 #Lc.go{animation:ce 2s cubic-bezier(0.22,1,0.36,1) forwards}
 @keyframes ce{0%{transform:scale(0)}100%{transform:scale(80)}}
 #L.fo{opacity:0;transition:opacity 0.5s ease}
-#Lh{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);transition:opacity 0.3s;z-index:3}
+#Lh{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#FFFFFF;transition:opacity 0.3s;z-index:3}
 #Lh.hi{opacity:0}
 #L.dn{display:none}
 
@@ -162,7 +162,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 <div id="L" onclick="enterSite()">
   <span id="La">*</span>
   <div id="Lc"></div>
-  <div id="Lh">ENTER THE INQUIRY</div>
+  <div id="Lh">CLICK TO ENTER</div>
 </div>
 
 <div id="S" style="display:none;">
@@ -238,7 +238,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 <div class="pg" style="margin-top:3rem;">
   <div class="p ic" onclick="op('env001')"><div class="pi"><img src="images/env-001-south-elevation.jpg" alt="South Elevation"></div><div class="pc"><div class="pcc">eNV.2026.001</div><div class="pcn">the engineer's residence</div><div class="pcm">MANGALORE | 2026 | ARCHITECTURE + INTERIOR DESIGN | 2,000 SQFT</div><div class="pcd">Residential commission covering full architectural and interior design services for a home in coastal Mangalore.</div></div></div>
   <div class="p"><div class="pi"><img src="images/env-004-community-centre.jpg" alt="Community Centre"></div><div class="pc"><div class="pcc">eNV.2026.004</div><div class="pcn">the community centre</div><div class="pcm">BANTWAL | 2026 | ARCHITECTURE | 5,000 SQFT</div><div class="pcd">Conceptual design proposal for a community centre with sustainable materials.</div></div></div>
-  <div class="p"><div class="pi"><img src="images/env-008-villa-hyderabad.jpg" alt="Villa Hyderabad"></div><div class="pc"><div class="pcc">eNV.2026.008</div><div class="pcn">the villa in hyderabad</div><div class="pcm">HYDERABAD | 2026 | ARCHITECTURE | 20,000 SQFT</div><div class="pcd">Conceptual design proposal covering full architectural and interior design services.</div></div></div>
+  <div class="p"><div class="pi"><img src="images/env-005-multifamily-dwelling.jpg" alt="Multifamily Dwelling"></div><div class="pc"><div class="pcc">eNV.2026.005</div><div class="pcn">the multifamily dwelling</div><div class="pcm">MANGALURU | 2026 | ARCHITECTURE | 6,000 SQFT</div><div class="pcd">Conceptual design proposal covering full architectural design.</div></div></div>
 <div class="dn-nav"><a onclick="dom('eye')">&larr; eYE</a><a onclick="go('domains')">&uarr; ALL DOMAINS</a><a onclick="dom('exp')">eXP &rarr;</a></div>
 </div>
 </div></div>
@@ -521,6 +521,7 @@ function cl(id){
   document.body.style.overflow='';
 }
 go('intro');
+setTimeout(function(){if(!document.getElementById('L').classList.contains('dn'))enterSite();},10000);
 </script>
 </body>
 </html>
