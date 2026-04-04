@@ -383,6 +383,24 @@
     border-top: 1px solid var(--rule);
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.profile-link {
+    font-family: var(--mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-whisper);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.1rem;
+    transition: color 0.3s, border-color 0.3s;
+}
+.profile-link:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+}
   }
 
   .footer .brand { font-size: 0.75rem; color: var(--text-whisper); }
@@ -706,6 +724,7 @@
 
   <div class="footer">
     <span class="brand">[INSD]e<span class="ast">*</span></span>
+    <a href="https://insd-e.com" target="_blank" rel="noopener noreferrer" class="profile-link">CHECK OUT OUR PROFILE</a>
   </div>
 
 </div>
