@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  /* RESET & BASE */
   *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -41,10 +40,8 @@
   /* LANDING PAGE */
   #landing-page {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: var(--blue);
     display: flex;
     align-items: center;
@@ -54,21 +51,18 @@
   }
 
   .landing-artwork {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .landing-artwork img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: contain;
     display: block;
   }
 
-  /* Fallback if landing image fails to load */
   .landing-fallback {
     font-family: var(--sans);
     font-weight: 700;
@@ -120,11 +114,6 @@
     display: inline-block;
   }
 
-  .mono-label {
-    font-family: var(--mono);
-    text-transform: uppercase;
-  }
-
   /* HEADER */
   .mark {
     font-family: var(--sans);
@@ -150,7 +139,7 @@
     margin: 1.5rem 0 3rem;
   }
 
-  /* TEXT STYLES */
+  /* TEXT */
   .to {
     font-size: 0.8rem;
     color: var(--text-light);
@@ -165,9 +154,7 @@
     margin-bottom: 1.4rem;
   }
 
-  .opening-block {
-    margin-bottom: 3rem;
-  }
+  .opening-block { margin-bottom: 3rem; }
 
   .opening-line {
     font-size: 1.05rem;
@@ -199,24 +186,27 @@
 
   .strong { font-weight: 500; color: var(--text); }
 
-  /* AI INTERFACE */
+  /* CURATORIAL INSIGHT - image click */
   .ai-trigger {
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
   }
+  .ai-trigger:hover { opacity: 0.92; }
 
-  .ai-insight-box {
+  .insight-box {
     background: #F9F9FF;
     border-left: 2px solid var(--blue);
     padding: 1.5rem;
     margin: 1rem 0 2rem;
     font-size: 0.85rem;
     font-family: var(--sans);
+    line-height: 1.8;
+    color: var(--text);
     display: none;
     animation: fadeIn 0.8s ease;
   }
 
-  .ai-loading {
+  .loading-text {
     font-family: var(--mono);
     font-size: 0.6rem;
     color: var(--blue);
@@ -226,14 +216,15 @@
     display: none;
   }
 
-  .ai-interface {
+  /* INQUIRY INTERFACE - dropdowns */
+  .inquiry-interface {
     margin: 4rem 0;
     padding: 2.5rem;
     background: #FBFBFB;
     border: 1px solid var(--rule);
   }
 
-  .ai-label {
+  .inquiry-label {
     font-family: var(--mono);
     font-size: 0.6rem;
     letter-spacing: 0.15em;
@@ -243,26 +234,57 @@
     display: block;
   }
 
-  .ai-input-group {
+  .inquiry-group {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
   }
 
-  input[type="text"] {
+  .select-wrapper {
+    position: relative;
+  }
+
+  .select-wrapper::after {
+    content: '↓';
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--blue);
+    position: absolute;
+    right: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  select {
     width: 100%;
     border: none;
     border-bottom: 1px solid var(--text-whisper);
     background: transparent;
-    padding: 0.6rem 0;
+    padding: 0.6rem 2rem 0.6rem 0;
     font-size: 0.85rem;
     font-family: var(--sans);
+    color: var(--text);
     outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
     transition: border-color 0.3s;
   }
-  input[type="text"]:focus { border-color: var(--blue); }
 
-  .sparkle-btn {
+  select:focus { border-color: var(--blue); }
+
+  select option {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  select option:disabled {
+    color: var(--text-whisper);
+  }
+
+  .inquire-btn {
     align-self: flex-end;
     background: var(--blue);
     color: white;
@@ -275,13 +297,26 @@
     cursor: pointer;
     transition: opacity 0.3s;
   }
-  .sparkle-btn:disabled { opacity: 0.5; cursor: wait; }
+  .inquire-btn:disabled { opacity: 0.5; cursor: wait; }
+
+  .inquiry-response {
+    background: #FFF;
+    border-left: 2px solid var(--text-whisper);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    font-family: var(--sans);
+    line-height: 1.8;
+    color: var(--text);
+    display: none;
+    animation: fadeIn 0.8s ease;
+  }
 
   /* IMAGES */
   .img-moment {
     margin: 2.2rem 0;
     position: relative;
-    min-height: 120px; /* Prevents layout collapse if image fails */
+    min-height: 120px;
     background: #F5F5F5;
   }
   .img-moment img {
@@ -298,9 +333,10 @@
     margin-top: 0.45rem;
     text-align: right;
   }
+
   .blue-rule { width: 1.5rem; height: 2px; background: var(--blue); margin: 2.8rem 0; }
 
-  /* CLOSING & SIGNATURE */
+  /* SIGNATURE */
   .closing-block { margin-top: 4rem; }
 
   .sig-name {
@@ -341,26 +377,21 @@
     border-bottom: 1px solid var(--rule);
   }
 
-  /* FIX: Footer brand mark was at 0.5rem making it unreadable.
-     Removed override so it inherits a sensible size. */
   .footer {
     margin-top: 3.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--rule);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
   }
 
-  .footer .brand {
-    font-size: 0.75rem;
-    color: var(--text-whisper);
-  }
-  .footer .brand .ast {
-    color: var(--text-whisper);
-  }
+  .footer .brand { font-size: 0.75rem; color: var(--text-whisper); }
+  .footer .brand .ast { color: var(--text-whisper); }
 
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
@@ -396,16 +427,17 @@
     Within the objects you create, there is a profound stillness - a form that has arrived after generations of consideration. Whether it is the grain of the wood or the temper of the metal, your work is not just decoration; it is <strong>conviction made visible</strong>.
   </p>
 
+  <!-- IMAGE 1 - clickable for curatorial insight -->
   <div class="img-moment ai-trigger" onclick="getInsight()">
     <img
       src="CRAFT_MOMENT_STILL.jpg"
-      alt="Craft Moment Still"
+      alt="A curated interior - golden hour light, gilded sculpture, tribal figurines, and a handwoven rug"
       onerror="this.style.display='none';"
     >
-    <p class="img-note">Click for * Curatorial Insight</p>
+    <p class="img-note">Click anywhere on the image for * Curatorial Insight</p>
   </div>
-  <div id="ai-loading" class="ai-loading">Consulting the eye...</div>
-  <div id="ai-insight" class="ai-insight-box"></div>
+  <div id="insight-loading" class="loading-text">Consulting the eye...</div>
+  <div id="insight-box" class="insight-box"></div>
 
   <div class="blue-rule"></div>
 
@@ -429,10 +461,11 @@
     We believe equally in the traditional and the contemporary, in craft that has been passed down through hands, and in work that is asking entirely new questions. What we look for, always, is intention. Work that is honest. Work that rewards a longer look.
   </p>
 
+  <!-- IMAGE 2 - static -->
   <div class="img-moment">
     <img
       src="SPATIAL_INTENTION_MOMENT.jpg"
-      alt="Spatial Intention Moment"
+      alt="A contemporary Indian home with a Pichwai painting, carved column, cane furniture, and tropical greenery"
       onerror="this.style.display='none';"
     >
   </div>
@@ -445,15 +478,53 @@
     We are proposing a collaboration built on shared values. Remarkable work reaches further when carried by more than one voice. Your story and work would be hosted on our platform and introduced to our clients who trust us to curate the life within their spaces.
   </p>
 
-  <div class="ai-interface">
-    <span class="ai-label">* Personalized Inquiry</span>
-    <div class="ai-input-group">
-      <input type="text" id="practice-name" placeholder="Name of your practice (e.g. Kinnal Art, Medha Khosla...)">
-      <input type="text" id="user-question" placeholder="Ask a question about our curatorial vision...">
-      <button class="sparkle-btn" id="ask-btn" onclick="askKajal()">Inquire *</button>
+  <!-- INQUIRY INTERFACE -->
+  <div class="inquiry-interface">
+    <span class="inquiry-label">* Personalised Inquiry</span>
+    <div class="inquiry-group">
+
+      <div class="select-wrapper">
+        <select id="collaborator-select">
+          <option value="" disabled selected>Select your practice</option>
+          <option value="kinnal">Kinnal Art</option>
+          <option value="medha">Medha Khosla</option>
+          <option value="shriharsh">Shriharsh Chari</option>
+          <option value="tamarind">Tamarind Tales</option>
+          <option value="kanchana">Kanchana Heritage Art</option>
+          <option value="travancore">Travancore Antiques</option>
+          <option value="designindia">Design of India</option>
+          <option value="brasscraft">Brass Craft</option>
+          <option value="artisansvault">The Artisans Vault</option>
+          <option value="dharohar">Dharohar</option>
+          <option value="kurustudio">Kuru Studio</option>
+          <option value="crafters">Crafters Antique Shop</option>
+          <option value="kalakar">Kalakar Design</option>
+        </select>
+      </div>
+
+      <div class="select-wrapper">
+        <select id="question-select">
+          <option value="" disabled selected>Select a question</option>
+          <option value="why_us">Why was our practice approached?</option>
+          <option value="how_justice">How will INSD-eYE do justice to our work?</option>
+          <option value="our_role">What is our role in this collaboration?</option>
+          <option value="who_sees">Who will actually see and buy our work?</option>
+          <option value="exclusivity">Does this collaboration require exclusivity?</option>
+          <option value="creative_control">Do we retain creative control over how our work is presented?</option>
+          <option value="commercial">Is this a commercial arrangement or purely curatorial?</option>
+          <option value="how_placed">How will our work be placed within a space?</option>
+          <option value="what_next">What happens after we say yes?</option>
+          <option value="digital">Will our work be shown digitally or in physical spaces?</option>
+          <option value="commission">How does commission or fee work?</option>
+          <option value="scale">Do we need to produce at a larger scale to collaborate?</option>
+        </select>
+      </div>
+
+      <button class="inquire-btn" id="inquire-btn" onclick="askKajal()">Inquire *</button>
     </div>
-    <div id="ai-response-loading" class="ai-loading" style="margin-top: 1.5rem;">Thinking unhurriedly...</div>
-    <div id="ai-response" class="ai-insight-box" style="margin-top: 1.5rem; background: #FFF; border-left-color: var(--text-whisper);"></div>
+
+    <div id="inquiry-loading" class="loading-text" style="margin-top: 1.5rem;">Thinking with intent...</div>
+    <div id="inquiry-response" class="inquiry-response"></div>
   </div>
 
   <div class="closing-block">
@@ -474,106 +545,163 @@
 </div>
 
 <script>
-  // NOTE: This API key is visible in client-side code.
-  // For a private/limited send (e.g. emailed to specific collaborators), this is acceptable.
-  // Do not share this page publicly at scale without rotating the key or proxying via a backend.
-  const apiKey = "AIzaSyAdRlyCmx-DGtuo50BRYzaNvOstKuv2w7U";
 
-  const COLLABORATORS = {
-    kinnalart: { name: "Kinnal Art", craft: "Kinnal figures, Polki Marra wood, tamarind paste foundation (lepam), 500-year history, Chitragars." },
-    medha: { name: "Medha Khosla", craft: "Textile research, indigenous weaves, sustainable fashion, textile as architectural texture." },
-    shriharsh: { name: "Shriharsh Chari", craft: "Traditional Goan metalwork, lost-wax casting, brass and copper sculpture." },
-    tamarind: { name: "Tamarind Tales", craft: "Curated vintage furniture, brass collectibles, restored architectural salvage." },
-    kanchana: { name: "Kanchana Heritage Art", craft: "Tanjore paintings, gold leaf work, semi-precious stone embedding, religious iconography." },
-    travancore: { name: "Travancore Antiques", craft: "Kerala teak and rosewood antiques, colonial influence, traditional wood carving." },
-    designindia: { name: "Design of India", craft: "Contemporary Indian aesthetics, handmade decor, heritage-inspired product design." },
-    brasscraft: { name: "Brass Craft", craft: "Traditional metal casting, dhokra art, industrial-meets-craft metal objects." },
-    artisansvault: { name: "The Artisans Vault", craft: "Bespoke handmade objects, curated artisanal collectives, mixed media craft." },
-    dharohar: { name: "Dharohar", craft: "Restored vintage furniture, heavy teak architectural elements, heritage restoration." },
-    kurustudio: { name: "Kuru Studio", craft: "Modern ceramics, minimal product design using traditional pottery techniques." },
-    crafters: { name: "Crafters Antique Shop", craft: "Jewish-colonial antiques from Kochi, rosewood furniture, rare architectural hardware." },
-    kalakar: { name: "Kalakar Design", craft: "Contemporary products using traditional craft, bridge between craft and industry." }
+  // ── CURATORIAL INSIGHTS (Image 1 - CRAFT_MOMENT_STILL) ──
+  // Written from careful reading of the image:
+  // Gilded sculptural head, tribal figurines, gold-leaf triptych, woven red rug,
+  // striped afternoon light, organic pendant, botanical prints, layered objects.
+
+  const INSIGHTS = [
+    "What this room understands - and what most spaces forget - is that light is itself a curatorial tool. The striped afternoon light here does not fall accidentally. It moves across the gilded head, the woven rug, the framed prints, activating each object differently across the day. This is what eYE works toward: art that changes with the light that holds it.",
+    "The gilded sculptural head on its blue plinth is doing something quiet and precise. It does not announce itself. It sits at eye level, in a corner, and waits to be found. That restraint - placing something extraordinary without performing it - is the curatorial instinct we bring to every space we work on.",
+    "Notice how no single object in this room claims dominance. The gold-leaf triptych holds the wall, the tribal figurines punctuate the table, the woven rug anchors the floor - and yet everything breathes together. Curation is not about filling space. It is about building a conversation between objects that were never in the same room before.",
+    "The red woven rug underfoot is carrying more visual weight than anything else in this room. Craft that lives on the floor - touched daily, walked on, rarely looked at directly - is often the most quietly powerful object in a space. eYE understands that the art brief includes what is below your feet, not only what hangs on your walls.",
+    "Three small framed botanical prints sit alongside a monumental gold-leaf work. Scale contrast, handled with this kind of confidence, is one of the most difficult curatorial decisions to make - and one of the most rewarding when it lands. The intimacy of the small makes the largeness of the large feel earned rather than overwhelming.",
+    "Every object in this space has a history longer than the room it now inhabits. The gilded head, the tribal figures, the organic forms - these are things that existed before this interior and will outlive it. That is the quality eYE sources for: objects that carry time in their material, not just beauty in their surface.",
+    "The pendant light above the dining table is not a light fixture. It is a sculptural decision. When eYE works on a space, we consider lighting objects, furniture, textiles, and art as a single curatorial brief - not as separate categories to be handed to separate vendors. This room is the argument for that position."
+  ];
+
+  function getInsight() {
+    const loader = document.getElementById('insight-loading');
+    const box = document.getElementById('insight-box');
+
+    // Hide existing response and show loader
+    box.style.display = 'none';
+    loader.style.display = 'block';
+
+    // Simulate 1.5s "consulting" delay then show a random insight
+    setTimeout(() => {
+      const pool = INSIGHTS.filter((_, i) => i !== getInsight._last);
+      const pick = Math.floor(Math.random() * pool.length);
+      const text = pool[pick];
+
+      // Track last shown to avoid immediate repeat
+      getInsight._last = INSIGHTS.indexOf(text);
+
+      loader.style.display = 'none';
+      box.innerText = text;
+      box.style.display = 'block';
+    }, 1500);
+  }
+  getInsight._last = -1;
+
+
+  // ── INQUIRY RESPONSES ──
+  // Keyed by question ID. Each has multiple variants so repeated clicks feel fresh.
+  // Collaborator name is injected dynamically where {name} appears.
+
+  const RESPONSES = {
+    why_us: [
+      "We came across {name} while researching the kind of work that does not announce itself loudly but stays with you. That quality - of work that reveals itself slowly, that rewards attention - is exactly what our clients respond to, and exactly what eYE is built to carry into spaces.",
+      "Your work was noticed not through a campaign or a catalogue, but through the kind of slow looking that we practice before we reach out to anyone. {name} was found because the work earned its own visibility. That is the only reason we write letters like this one.",
+      "Every practice we approach has been observed over time, not discovered in a search. {name} came to our attention because the work holds a position - it is not trying to be everything. That kind of clarity is rare, and it is precisely what a curated space needs to anchor itself around."
+    ],
+    how_justice: [
+      "We do justice to a maker's work by never placing it where it does not belong. Before any work from {name} enters a client's space, we have already understood the space's material language, its light, its use - and we only proceed if the fit is honest. We do not use art to fill walls. We use it to complete rooms.",
+      "Justice, for eYE, means context. A piece from {name} would never be introduced to a client without a conversation about why this specific work belongs in this specific space - not as decoration, but as an object with a history and a point of view that the space is asking for.",
+      "We present your work to clients the same way we would want our own design to be presented - with full context, with the story behind the making, with enough space around it for the client to form their own relationship with it. {name}'s work would never be reduced to a line item in a specification sheet."
+    ],
+    our_role: [
+      "Your role is to make the work and trust us to carry it correctly. {name} remains the author of every object. eYE's role is to understand that authorship deeply enough to place the work only where it will be read with the attention it deserves - and to ensure the client relationship honours that.",
+      "As a collaborator under eYE, {name} is a creative equal, not a vendor. We do not issue purchase orders and take a margin. We build a shared understanding of the work, agree on how it is presented and priced, and bring it into spaces as a named, credited presence - the way any serious curatorial practice would.",
+      "The role we are proposing is simple: you make, we place, and we do so with full transparency. {name} would always be credited by name in every space, every presentation, and every conversation with clients. We are not intermediaries who erase the maker. We are curators who make the maker visible."
+    ],
+    who_sees: [
+      "Our clients are individuals and families commissioning spaces from scratch - residential projects where the art brief is integrated into the design conversation from day one, not added at the end. These are people who invest seriously in how their spaces feel, and who trust us to guide the decisions they are not equipped to make alone.",
+      "The people who will encounter {name}'s work through eYE are clients who have already committed to a design process with [INSD]e*. They are not browsing. They are building. That distinction matters - your work would not be competing for attention in a gallery. It would be living in a space designed around it.",
+      "We work primarily with clients in Coastal Karnataka and increasingly beyond - architects, engineers, entrepreneurs, and families who understand that a space without considered objects is an incomplete space. These are not impulse buyers. They arrive at an art decision slowly, with our guidance, which means the work we introduce has a much higher chance of finding a home that truly holds it."
+    ],
+    exclusivity: [
+      "There is no exclusivity requirement. {name} remains free to work with galleries, other curators, and direct clients. eYE is not a monopoly on your work - it is one additional channel through which the right spaces can find it. We ask only that when a project is underway, you give us early visibility into available works so we can consider them honestly.",
+      "We do not ask for exclusivity because we do not believe in it. Good work should reach as many considered spaces as possible. What we do ask for is transparency - if a piece from {name} that we have already presented to a client is sold elsewhere, we would want to know early so we can continue the conversation with integrity.",
+      "Exclusivity is not part of how eYE works. We are curators, not agents. {name}'s practice belongs to you. Our collaboration is about expanding where your work lands, not restricting it."
+    ],
+    creative_control: [
+      "Entirely. {name}'s work is presented as {name} makes it - we do not reframe, rebrand, or re-describe it to suit a client's taste. If a client's brief is not an honest fit for a piece, we do not force the placement. Creative control, for the maker, is non-negotiable at eYE.",
+      "You retain complete creative control. We may share curatorial context - why this piece works in this space, how it reads alongside other objects - but we will never alter the description, the pricing, or the story of the work without your agreement. The conversation about how your work is presented is always a collaboration, not a directive.",
+      "Yes, always. The only editorial input eYE contributes is the decision of which space a work belongs in. Everything about the work itself - its story, its material, its price, the way it is described - remains yours. We are not in the business of translating your work into someone else's language."
+    ],
+    commercial: [
+      "It is both, honestly. eYE is a curatorial practice with a commercial function - we source art for spaces that clients are paying us to design, and those clients expect to acquire the works we recommend. {name}'s work would be presented with a selling price, and when a piece finds a home, a commission arrangement would apply. We can discuss the specifics of that structure directly.",
+      "The curatorial intent is genuine - we only approach makers whose work we believe in. But we would be dishonest if we said the commercial layer does not exist. Our clients have budgets for art, and when a piece from {name} is placed, there is a transaction. What eYE ensures is that the transaction is always preceded by the right conversation.",
+      "Both. The curation is real - we would not place work in a space it does not belong in, regardless of the commercial opportunity. But within the right spaces, work from {name} would be offered for acquisition, and eYE would earn a commission on successful placements. We believe in being transparent about that structure from the beginning."
+    ],
+    how_placed: [
+      "Placement decisions are made in conversation with the spatial design - which means we know the wall, the light, the material context, and the people who will live with the work before we recommend any piece from {name}. We do not place art after the fact. It is part of the design conversation from the concept stage.",
+      "Every placement is specific. We do not maintain a catalogue that clients browse - we make a considered recommendation based on a detailed understanding of the space and the client. When we bring a work from {name} to a client, it is because that specific piece belongs in that specific location, and we are prepared to explain exactly why.",
+      "The work would be placed in the way the space asks for it - not the other way around. Before any recommendation, eYE studies the spatial brief, the material palette, the light conditions, and the client's relationship with objects and memory. A piece from {name} would only be proposed when the space genuinely calls for what that work offers."
+    ],
+    what_next: [
+      "If there is interest, we would begin with a conversation - not a form or a contract, but a proper exchange where we understand {name}'s practice more deeply and share the kind of projects we are currently working on. From there, we would identify which works might be relevant to which spaces, and build the collaboration from that specific ground.",
+      "The next step is simply a call or a meeting. We do not move into formal arrangements without first spending time understanding the work and the maker. For {name}, that would mean a conversation with Ar. Kajal Diwakar directly - at a pace that feels right for both sides. You can reach us at kajal@insd-e.com or +91 90337 62739.",
+      "Nothing moves fast here intentionally. If this letter has resonated, reach out - by email or phone. We would begin with an informal conversation about the practice, current works, and the kinds of spaces we are currently designing. The collaboration, if it develops, would be documented simply and honestly, without excessive process."
+    ],
+    digital: [
+      "Primarily physical. eYE sources art for built spaces - residences, studios, institutional interiors that [INSD]e* designs. The work from {name} would live in a room, under specific light, alongside furniture and materials chosen to hold it correctly. Digital presentation is part of how we communicate with clients during the design process, but the destination is always a real space.",
+      "The end destination is always physical - a space that has been designed with the art brief in mind from the beginning. Digital presentation tools are used during the client conversation, but they are a means to an end. When {name}'s work is placed through eYE, it is placed in a home or a space, not on a screen.",
+      "Both, at different stages. During the design and client conversation process, works are presented digitally - in spatial renders, in mood boards, in design presentations. But the final placement is always physical. eYE does not deal in digital art or NFTs. The work we source is made by hand and lives in the material world."
+    ],
+    commission: [
+      "Commission structures are discussed directly and transparently with each collaborator before any work is presented to clients. There is no fixed percentage that applies universally - it depends on the scale of the work, the nature of the project, and the relationship. What we can commit to is that {name} would always know the terms before any placement conversation begins.",
+      "We work on a commission basis for successful placements - meaning eYE earns a percentage of the sale price when a work is acquired by a client. The exact structure is agreed with {name} before we proceed, and we do not present any work to a client without that agreement in place. Transparency on the financial arrangement is a basic principle of how we work.",
+      "The fee structure is straightforward: {name} sets the price for each work, eYE adds a curatorial commission on top of that, and the client pays the combined amount. You receive your full asking price. We earn our commission without discounting your work. The specific percentage is agreed in advance and documented before any client conversation begins."
+    ],
+    scale: [
+      "No. eYE works with makers at the scale they already operate at - whether that is a single edition piece or a larger body of work. {name} does not need to produce more or differently to collaborate with us. If anything, scarcity and specificity are qualities we value. A maker who produces one considered object is as relevant to our work as one who produces many.",
+      "Scale is not a prerequisite. Some of the most powerful placements we make involve a single object from a maker's practice - a piece that is placed once, in exactly the right space, and carries the room. {name}'s practice does not need to change in scale to work with eYE. It needs only to continue making work with the same intention it already brings.",
+      "Not at all. We do not aggregate or bulk-source. eYE works project by project, space by space - which means we might approach {name} about one specific piece for one specific room. The collaboration does not require production capacity. It requires only a willingness to let us understand the work well enough to place it correctly."
+    ]
   };
 
-  async function callGemini(prompt, systemPrompt) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-    const payload = {
-      contents: [{ parts: [{ text: prompt }] }],
-      systemInstruction: { parts: [{ text: systemPrompt }] }
-    };
-    let delay = 1000;
-    for (let i = 0; i < 5; i++) {
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!response.ok) throw new Error('API Error');
-        const data = await response.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
-      } catch (err) {
-        if (i === 4) return "Connection error. Please check your network or try again later.";
-        await new Promise(r => setTimeout(r, delay));
-        delay *= 2;
-      }
-    }
-  }
+  function askKajal() {
+    const collaboratorKey = document.getElementById('collaborator-select').value;
+    const questionKey = document.getElementById('question-select').value;
+    const loader = document.getElementById('inquiry-loading');
+    const responseBox = document.getElementById('inquiry-response');
+    const btn = document.getElementById('inquire-btn');
 
-  async function getInsight() {
-    const box = document.getElementById('ai-insight');
-    const loader = document.getElementById('ai-loading');
-    const practice = document.getElementById('practice-name').value.trim() || "Authentic Craft";
-
-    loader.style.display = 'block';
-    box.style.display = 'none';
-
-    const sysPrompt = `You are an architectural curator. Provide a direct, 2-sentence explanation of why this craft works in modern design. Focus on practical architectural value. Tone: Professional, grounded, and concise. No flowery metaphors.`;
-    const result = await callGemini(`Why does ${practice} work in modern architectural spaces?`, sysPrompt);
-
-    loader.style.display = 'none';
-    box.innerText = result;
-    box.style.display = 'block';
-  }
-
-  async function askKajal() {
-    const practiceName = document.getElementById('practice-name').value.trim();
-    const question = document.getElementById('user-question').value.trim();
-    const loader = document.getElementById('ai-response-loading');
-    const responseBox = document.getElementById('ai-response');
-    const btn = document.getElementById('ask-btn');
-
-    if (!question) {
-      responseBox.innerText = "Please enter a question before inquiring.";
+    if (!collaboratorKey || !questionKey) {
+      responseBox.innerText = "Please select both a practice and a question before inquiring.";
       responseBox.style.display = 'block';
       return;
     }
 
-    loader.style.display = 'block';
+    // Get collaborator display name
+    const nameMap = {
+      kinnal: "Kinnal Art", medha: "Medha Khosla", shriharsh: "Shriharsh Chari",
+      tamarind: "Tamarind Tales", kanchana: "Kanchana Heritage Art",
+      travancore: "Travancore Antiques", designindia: "Design of India",
+      brasscraft: "Brass Craft", artisansvault: "The Artisans Vault",
+      dharohar: "Dharohar", kurustudio: "Kuru Studio",
+      crafters: "Crafters Antique Shop", kalakar: "Kalakar Design"
+    };
+
+    const name = nameMap[collaboratorKey] || "your practice";
+    const variants = RESPONSES[questionKey];
+
+    // Pick a variant - avoid repeating the last one shown for this question
+    const cacheKey = `last_${questionKey}`;
+    const lastIndex = askKajal[cacheKey] !== undefined ? askKajal[cacheKey] : -1;
+    const pool = variants.map((v, i) => i).filter(i => i !== lastIndex);
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    askKajal[cacheKey] = pick;
+
+    const text = variants[pick].replace(/{name}/g, name);
+
     responseBox.style.display = 'none';
     btn.disabled = true;
+    loader.style.display = 'block';
 
-    let craftContext = "authentic handmade objects";
-    if (practiceName) {
-      const lowerName = practiceName.toLowerCase();
-      for (const key in COLLABORATORS) {
-        if (lowerName.includes(key) || lowerName.includes(COLLABORATORS[key].name.toLowerCase())) {
-          craftContext = COLLABORATORS[key].craft;
-          break;
-        }
-      }
-    }
-
-    const practiceRef = practiceName || "an independent practice";
-    const sysPrompt = `You are Ar. Kajal Diwakar, Creative Director at INSD-eYE, the curatorial arm of [INSD]e* - Inquiries in Strategic Design, based in Mangaluru. Respond to a maker or collector from '${practiceRef}' regarding their craft (${craftContext}). Be professional, warm but measured, architectural in thinking, and direct. Avoid overly poetic or complex language. Maximum 2 sentences.`;
-    const result = await callGemini(question, sysPrompt);
-
-    loader.style.display = 'none';
-    responseBox.innerText = result;
-    responseBox.style.display = 'block';
-    btn.disabled = false;
+    setTimeout(() => {
+      loader.style.display = 'none';
+      responseBox.innerText = text;
+      responseBox.style.display = 'block';
+      btn.disabled = false;
+    }, 1800);
   }
 
+
+  // ── LANDING PAGE TRANSITION ──
   window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       const landing = document.getElementById('landing-page');
@@ -586,6 +714,7 @@
       }, 1200);
     }, 5000);
   });
+
 </script>
 </body>
 </html>
