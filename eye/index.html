@@ -1,1 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A Letter from INSD-eYE — Visual Curation & Art Sourcing, [INSD]e* Inquiries in Strategic Design, Mangaluru.">
+<title>A Letter from INSD-eYE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* RESET & BASE */
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
 
+  :root {
+    --bg: #FFFFFF;
+    --text: #1A1A1A;
+    --text-light: #666666;
+    --text-faint: #999999;
+    --text-whisper: #BBBBBB;
+    --blue: #0000FF;
+    --rule: #E8E8E8;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Poppins', sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* LANDING PAGE */
+  #landing-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s;
+  }
+
+  .landing-artwork {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .landing-artwork img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Fallback if landing image fails to load */
+  .landing-fallback {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: white;
+    letter-spacing: 0.15em;
+    text-align: center;
+    display: none;
+  }
+
+  #landing-page.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* MAIN CONTENT */
+  #main-content {
+    opacity: 0;
+    transition: opacity 1.5s ease-in;
+    display: none;
+  }
+
+  #main-content.visible {
+    opacity: 1;
+    display: block;
+  }
+
+  .letter {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 3.5rem;
+  }
+  @media (min-width: 768px) {
+    .letter { padding: 4.5rem 1.5rem 5rem; }
+  }
+
+  /* TYPOGRAPHY */
+  .brand {
+    font-family: var(--sans) !important;
+    font-weight: 700;
+    color: var(--text);
+    text-transform: none !important;
+  }
+  .brand .ast { color: var(--blue); }
+
+  .preserve-case {
+    text-transform: none !important;
+    font-family: var(--sans) !important;
+    display: inline-block;
+  }
+
+  .mono-label {
+    font-family: var(--mono);
+    text-transform: uppercase;
+  }
+
+  /* HEADER */
+  .mark {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    margin-bottom: 0.15rem;
+  }
+
+  .mark-sub {
+    font-family: var(--mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-whisper);
+  }
+
+  .header-rule {
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    margin: 1.5rem 0 3rem;
+  }
+
+  /* TEXT STYLES */
+  .to {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+
+  p {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    margin-bottom: 1.4rem;
+  }
+
+  .opening-block {
+    margin-bottom: 3rem;
+  }
+
+  .opening-line {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+  }
+
+  .opening-sub {
+    font-size: 0.92rem;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  .observation {
+    font-size: 0.92rem;
+    line-height: 2;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .breath {
+    font-size: 0.92rem;
+    font-weight: 400;
+    margin: 2.5rem 0;
+    color: var(--text);
+  }
+
+  .strong { font-weight: 500; color: var(--text); }
+
+  /* AI INTERFACE */
+  .ai-trigger {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-insight-box {
+    background: #F9F9FF;
+    border-left: 2px solid var(--blue);
+    padding: 1.5rem;
+    margin: 1rem 0 2rem;
+    font-size: 0.85rem;
+    font-family: var(--sans);
+    display: none;
+    animation: fadeIn 0.8s ease;
+  }
+
+  .ai-loading {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--blue);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 1rem 0;
+    display: none;
+  }
+
+  .ai-interface {
+    margin: 4rem 0;
+    padding: 2.5rem;
+    background: #FBFBFB;
+    border: 1px solid var(--rule);
+  }
+
+  .ai-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .ai-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--text-whisper);
+    background: transparent;
+    padding: 0.6rem 0;
+    font-size: 0.85rem;
+    font-family: var(--sans);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  input[type="text"]:focus { border-color: var(--blue); }
+
+  .sparkle-btn {
+    align-self: flex-end;
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  .sparkle-btn:disabled { opacity: 0.5; cursor: wait; }
+
+  /* IMAGES */
+  .img-moment {
+    margin: 2.2rem 0;
+    position: relative;
+    min-height: 120px; /* Prevents layout collapse if image fails */
+    background: #F5F5F5;
+  }
+  .img-moment img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .img-note {
+    font-family: var(--mono);
+    font-size: 0.48rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-whisper);
+    margin-top: 0.45rem;
+    text-align: right;
+  }
+  .blue-rule { width: 1.5rem; height: 2px; background: var(--blue); margin: 2.8rem 0; }
+
+  /* CLOSING & SIGNATURE */
+  .closing-block { margin-top: 4rem; }
+
+  .sig-name {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.1rem;
+  }
+
+  .sig-role-poppins {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    color: var(--text-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .sig-mono {
+    font-family: var(--mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 0.15rem;
+  }
+
+  .sig-contact-poppins {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    color: var(--text-whisper);
+    margin-top: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .sig-contact-poppins a {
+    color: var(--text-faint);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* FIX: Footer brand mark was at 0.5rem making it unreadable.
+     Removed override so it inherits a sensible size. */
+  .footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer .brand {
+    font-size: 0.75rem;
+    color: var(--text-whisper);
+  }
+  .footer .brand .ast {
+    color: var(--text-whisper);
+  }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<div id="landing-page">
+  <div class="landing-artwork">
+    <img
+      src="INSD-eYE_LETTER.jpg"
+      alt="A Letter from INSD-eYE"
+      onerror="this.style.display='none'; document.querySelector('.landing-fallback').style.display='block';"
+    >
+    <p class="landing-fallback">[INSD]e*<br>INSD-eYE</p>
+  </div>
+</div>
+
+<div id="main-content" class="letter">
+
+  <div class="mark">[INSD]e<span style="color:var(--blue);font-family:var(--sans);font-weight:700;">*</span></div>
+  <div class="mark-sub"><span class="preserve-case">INSD-eYE</span> &nbsp;|&nbsp; VISUAL CURATION &amp; ART SOURCING</div>
+  <div class="header-rule"></div>
+
+  <p class="to">To the maker, the collector, the one whose eye we trust.</p>
+
+  <div class="opening-block">
+    <p class="opening-line">If you are reading this, your work has already been noticed.</p>
+    <p class="opening-sub">Not in passing. With attention.</p>
+    <p class="opening-sub">
+      We look for work that stays longer than most things do today. Work that carries the weight of a real hand, a real decision, a real history. If that describes what you do, this letter is for you.
+    </p>
+  </div>
+
+  <p class="observation">
+    Within the objects you create, there is a profound stillness - a form that has arrived after generations of consideration. Whether it is the grain of the wood or the temper of the metal, your work is not just decoration; it is <strong>conviction made visible</strong>.
+  </p>
+
+  <div class="img-moment ai-trigger" onclick="getInsight()">
+    <img
+      src="CRAFT_MOMENT_STILL.jpg"
+      alt="Craft Moment Still"
+      onerror="this.style.display='none';"
+    >
+    <p class="img-note">Click for * Curatorial Insight</p>
+  </div>
+  <div id="ai-loading" class="ai-loading">Consulting the eye...</div>
+  <div id="ai-insight" class="ai-insight-box"></div>
+
+  <div class="blue-rule"></div>
+
+  <p>
+    I am Ar. Kajal Diwakar. I am the Creative Director at <span class="brand">[INSD]e<span class="ast">*</span></span> - Inquiries in Strategic Design, a multidisciplinary design consultancy practice based in Mangalore, founded together with Ar. Shruthadev Bantwal.
+  </p>
+
+  <p>
+    At <span class="brand">[INSD]e<span class="ast">*</span></span>, we do not believe design begins with a drawing. It begins with an inquiry - into site, into context, into the people a space is being made for.
+  </p>
+
+  <p>
+    One of those inquiries is called <span class="preserve-case">INSD-eYE</span>.
+  </p>
+
+  <p>
+    eYE is the aesthetic and curatorial intelligence of our practice. It is where we source art for the spaces we design, develop curated programming, and build relationships with the makers, collectors, and designers whose work carries the kind of authenticity that cannot be manufactured. The art brief, for us, is never an afterthought. It is part of the spatial conversation from day one.
+  </p>
+
+  <p>
+    We believe equally in the traditional and the contemporary, in craft that has been passed down through hands, and in work that is asking entirely new questions. What we look for, always, is intention. Work that is honest. Work that rewards a longer look.
+  </p>
+
+  <div class="img-moment">
+    <img
+      src="SPATIAL_INTENTION_MOMENT.jpg"
+      alt="Spatial Intention Moment"
+      onerror="this.style.display='none';"
+    >
+  </div>
+
+  <div class="blue-rule"></div>
+
+  <p class="breath">This is why I am writing to you.</p>
+
+  <p>
+    We are proposing a collaboration built on shared values. Remarkable work reaches further when carried by more than one voice. Your story and work would be hosted on our platform and introduced to our clients who trust us to curate the life within their spaces.
+  </p>
+
+  <div class="ai-interface">
+    <span class="ai-label">* Personalized Inquiry</span>
+    <div class="ai-input-group">
+      <input type="text" id="practice-name" placeholder="Name of your practice (e.g. Kinnal Art, Medha Khosla...)">
+      <input type="text" id="user-question" placeholder="Ask a question about our curatorial vision...">
+      <button class="sparkle-btn" id="ask-btn" onclick="askKajal()">Inquire *</button>
+    </div>
+    <div id="ai-response-loading" class="ai-loading" style="margin-top: 1.5rem;">Thinking unhurriedly...</div>
+    <div id="ai-response" class="ai-insight-box" style="margin-top: 1.5rem; background: #FFF; border-left-color: var(--text-whisper);"></div>
+  </div>
+
+  <div class="closing-block">
+    <p style="font-style: italic; color: var(--text-light); margin-bottom: 1.5rem;">With genuine admiration,</p>
+    <p class="sig-name">Ar. Kajal Diwakar</p>
+    <div class="sig-role-poppins">Creative Director</div>
+    <div class="sig-mono"><span class="preserve-case">INSD-eYE</span> &nbsp;|&nbsp; INQUIRIES IN STRATEGIC DESIGN</div>
+    <div class="sig-mono">MANGALURU, KARNATAKA</div>
+    <div class="sig-contact-poppins">
+      <a href="tel:+919033762739">+91 90337 62739</a> &nbsp;|&nbsp; <a href="mailto:kajal@insd-e.com">kajal@insd-e.com</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="brand">[INSD]e<span class="ast">*</span></span>
+  </div>
+
+</div>
+
+<script>
+  // NOTE: This API key is visible in client-side code.
+  // For a private/limited send (e.g. emailed to specific collaborators), this is acceptable.
+  // Do not share this page publicly at scale without rotating the key or proxying via a backend.
+  const apiKey = "AIzaSyAdRlyCmx-DGtuo50BRYzaNvOstKuv2w7U";
+
+  const COLLABORATORS = {
+    kinnalart: { name: "Kinnal Art", craft: "Kinnal figures, Polki Marra wood, tamarind paste foundation (lepam), 500-year history, Chitragars." },
+    medha: { name: "Medha Khosla", craft: "Textile research, indigenous weaves, sustainable fashion, textile as architectural texture." },
+    shriharsh: { name: "Shriharsh Chari", craft: "Traditional Goan metalwork, lost-wax casting, brass and copper sculpture." },
+    tamarind: { name: "Tamarind Tales", craft: "Curated vintage furniture, brass collectibles, restored architectural salvage." },
+    kanchana: { name: "Kanchana Heritage Art", craft: "Tanjore paintings, gold leaf work, semi-precious stone embedding, religious iconography." },
+    travancore: { name: "Travancore Antiques", craft: "Kerala teak and rosewood antiques, colonial influence, traditional wood carving." },
+    designindia: { name: "Design of India", craft: "Contemporary Indian aesthetics, handmade decor, heritage-inspired product design." },
+    brasscraft: { name: "Brass Craft", craft: "Traditional metal casting, dhokra art, industrial-meets-craft metal objects." },
+    artisansvault: { name: "The Artisans Vault", craft: "Bespoke handmade objects, curated artisanal collectives, mixed media craft." },
+    dharohar: { name: "Dharohar", craft: "Restored vintage furniture, heavy teak architectural elements, heritage restoration." },
+    kurustudio: { name: "Kuru Studio", craft: "Modern ceramics, minimal product design using traditional pottery techniques." },
+    crafters: { name: "Crafters Antique Shop", craft: "Jewish-colonial antiques from Kochi, rosewood furniture, rare architectural hardware." },
+    kalakar: { name: "Kalakar Design", craft: "Contemporary products using traditional craft, bridge between craft and industry." }
+  };
+
+  async function callGemini(prompt, systemPrompt) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const payload = {
+      contents: [{ parts: [{ text: prompt }] }],
+      systemInstruction: { parts: [{ text: systemPrompt }] }
+    };
+    let delay = 1000;
+    for (let i = 0; i < 5; i++) {
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error('API Error');
+        const data = await response.json();
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
+      } catch (err) {
+        if (i === 4) return "Connection error. Please check your network or try again later.";
+        await new Promise(r => setTimeout(r, delay));
+        delay *= 2;
+      }
+    }
+  }
+
+  async function getInsight() {
+    const box = document.getElementById('ai-insight');
+    const loader = document.getElementById('ai-loading');
+    const practice = document.getElementById('practice-name').value.trim() || "Authentic Craft";
+
+    loader.style.display = 'block';
+    box.style.display = 'none';
+
+    const sysPrompt = `You are an architectural curator. Provide a direct, 2-sentence explanation of why this craft works in modern design. Focus on practical architectural value. Tone: Professional, grounded, and concise. No flowery metaphors.`;
+    const result = await callGemini(`Why does ${practice} work in modern architectural spaces?`, sysPrompt);
+
+    loader.style.display = 'none';
+    box.innerText = result;
+    box.style.display = 'block';
+  }
+
+  async function askKajal() {
+    const practiceName = document.getElementById('practice-name').value.trim();
+    const question = document.getElementById('user-question').value.trim();
+    const loader = document.getElementById('ai-response-loading');
+    const responseBox = document.getElementById('ai-response');
+    const btn = document.getElementById('ask-btn');
+
+    if (!question) {
+      responseBox.innerText = "Please enter a question before inquiring.";
+      responseBox.style.display = 'block';
+      return;
+    }
+
+    loader.style.display = 'block';
+    responseBox.style.display = 'none';
+    btn.disabled = true;
+
+    let craftContext = "authentic handmade objects";
+    if (practiceName) {
+      const lowerName = practiceName.toLowerCase();
+      for (const key in COLLABORATORS) {
+        if (lowerName.includes(key) || lowerName.includes(COLLABORATORS[key].name.toLowerCase())) {
+          craftContext = COLLABORATORS[key].craft;
+          break;
+        }
+      }
+    }
+
+    const practiceRef = practiceName || "an independent practice";
+    const sysPrompt = `You are Ar. Kajal Diwakar, Creative Director at INSD-eYE, the curatorial arm of [INSD]e* - Inquiries in Strategic Design, based in Mangaluru. Respond to a maker or collector from '${practiceRef}' regarding their craft (${craftContext}). Be professional, warm but measured, architectural in thinking, and direct. Avoid overly poetic or complex language. Maximum 2 sentences.`;
+    const result = await callGemini(question, sysPrompt);
+
+    loader.style.display = 'none';
+    responseBox.innerText = result;
+    responseBox.style.display = 'block';
+    btn.disabled = false;
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const landing = document.getElementById('landing-page');
+      const content = document.getElementById('main-content');
+      landing.classList.add('hidden');
+      setTimeout(() => {
+        content.style.display = 'block';
+        setTimeout(() => content.classList.add('visible'), 50);
+        landing.style.display = 'none';
+      }, 1200);
+    }, 5000);
+  });
+</script>
+</body>
+</html>
