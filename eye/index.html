@@ -388,6 +388,123 @@
   .footer .brand { font-size: 0.75rem; color: var(--text-whisper); }
   .footer .brand .ast { color: var(--text-whisper); }
 
+  /* CUSTOM PRACTICE INPUT - shown when "Other" is selected */
+  .custom-input-wrapper {
+    display: none;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--text-whisper);
+    background: transparent;
+    padding: 0.6rem 0;
+    font-size: 0.85rem;
+    font-family: var(--sans);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  input[type="text"]:focus { border-color: var(--blue); }
+  input[type="text"]::placeholder { color: var(--text-whisper); }
+
+  /* REACH OUT SECTION */
+  .reach-out {
+    margin: 4rem 0;
+    padding: 2.5rem;
+    background: #FBFBFB;
+    border: 1px solid var(--rule);
+  }
+
+  .reach-out-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  .reach-out-intro {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    line-height: 1.75;
+    margin-bottom: 1.8rem;
+  }
+
+  .reach-out-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .field-label {
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-whisper);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--text-whisper);
+    background: transparent;
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+    font-family: var(--sans);
+    color: var(--text);
+    outline: none;
+    resize: none;
+    line-height: 1.7;
+    transition: border-color 0.3s;
+  }
+  textarea:focus { border-bottom-color: var(--blue); }
+  textarea::placeholder { color: var(--text-whisper); }
+
+  .reach-out-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .send-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  .send-btn:hover { opacity: 0.85; }
+
+  .direct-mail {
+    font-family: var(--mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.1rem;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .direct-mail:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+  }
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
@@ -484,7 +601,7 @@
     <div class="inquiry-group">
 
       <div class="select-wrapper">
-        <select id="collaborator-select">
+        <select id="collaborator-select" onchange="handleCollaboratorChange()">
           <option value="" disabled selected>Select your practice</option>
           <option value="kinnal">Kinnal Art</option>
           <option value="medha">Medha Khosla</option>
@@ -499,7 +616,12 @@
           <option value="kurustudio">Kuru Studio</option>
           <option value="crafters">Crafters Antique Shop</option>
           <option value="kalakar">Kalakar Design</option>
+          <option value="other">Other - enter your practice name</option>
         </select>
+      </div>
+
+      <div class="custom-input-wrapper" id="custom-practice-wrapper">
+        <input type="text" id="custom-practice-name" placeholder="Name of your practice">
       </div>
 
       <div class="select-wrapper">
@@ -525,6 +647,33 @@
 
     <div id="inquiry-loading" class="loading-text" style="margin-top: 1.5rem;">Thinking with intent...</div>
     <div id="inquiry-response" class="inquiry-response"></div>
+  </div>
+
+
+  <!-- REACH OUT SECTION -->
+  <div class="reach-out">
+    <span class="reach-out-label">* Not on the list? Reach out.</span>
+    <p class="reach-out-intro">
+      If your practice is not listed above but you believe your work belongs in the spaces we design, we want to hear from you. Tell us who you are, where to find you, and why you feel there is something here worth exploring together.
+    </p>
+    <div class="reach-out-fields">
+      <div>
+        <span class="field-label">Name of your practice</span>
+        <input type="text" id="ro-practice" placeholder="e.g. Studio Mati, The Brass Room...">
+      </div>
+      <div>
+        <span class="field-label">Instagram handle or website</span>
+        <input type="text" id="ro-contact" placeholder="e.g. @studiomati or studiomati.com">
+      </div>
+      <div>
+        <span class="field-label">What you specialise in, or why you feel this collaboration makes sense</span>
+        <textarea id="ro-message" rows="4" placeholder="Tell us about your work and what draws you to INSD-eYE..."></textarea>
+      </div>
+    </div>
+    <div class="reach-out-actions">
+      <button class="send-btn" onclick="sendReachOut()">Send *</button>
+      <a class="direct-mail" href="mailto:kajal@insd-e.com">Or write directly - kajal@insd-e.com</a>
+    </div>
   </div>
 
   <div class="closing-block">
@@ -673,10 +822,17 @@
       travancore: "Travancore Antiques", designindia: "Design of India",
       brasscraft: "Brass Craft", artisansvault: "The Artisans Vault",
       dharohar: "Dharohar", kurustudio: "Kuru Studio",
-      crafters: "Crafters Antique Shop", kalakar: "Kalakar Design"
+      crafters: "Crafters Antique Shop", kalakar: "Kalakar Design",
+      other: null
     };
 
-    const name = nameMap[collaboratorKey] || "your practice";
+    let name;
+    if (collaboratorKey === 'other') {
+      const custom = document.getElementById('custom-practice-name').value.trim();
+      name = custom || 'your practice';
+    } else {
+      name = nameMap[collaboratorKey] || 'your practice';
+    }
     const variants = RESPONSES[questionKey];
 
     // Pick a variant - avoid repeating the last one shown for this question
@@ -702,6 +858,40 @@
 
 
   // ── LANDING PAGE TRANSITION ──
+  // ── COLLABORATOR SELECT - show/hide custom input ──
+  function handleCollaboratorChange() {
+    const select = document.getElementById('collaborator-select');
+    const wrapper = document.getElementById('custom-practice-wrapper');
+    if (select.value === 'other') {
+      wrapper.style.display = 'block';
+    } else {
+      wrapper.style.display = 'none';
+      document.getElementById('custom-practice-name').value = '';
+    }
+  }
+
+  // ── REACH OUT - compose mailto and open mail client ──
+  function sendReachOut() {
+    const practice = document.getElementById('ro-practice').value.trim();
+    const contact  = document.getElementById('ro-contact').value.trim();
+    const message  = document.getElementById('ro-message').value.trim();
+
+    if (!practice || !message) {
+      alert('Please fill in at least your practice name and a short message.');
+      return;
+    }
+
+    const subject = encodeURIComponent('Collaboration Inquiry - INSD-eYE | ' + practice);
+    const body = encodeURIComponent(
+      'Practice Name: ' + practice + '\n' +
+      'Instagram / Website: ' + (contact || 'Not provided') + '\n\n' +
+      'About the work / Why collaborate:\n' + message + '\n\n' +
+      '---\nSent via INSD-eYE Collaboration Page'
+    );
+
+    window.location.href = 'mailto:kajal@insd-e.com?subject=' + subject + '&body=' + body;
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       const landing = document.getElementById('landing-page');
