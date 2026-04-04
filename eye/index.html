@@ -388,6 +388,19 @@
   .footer .brand { font-size: 0.75rem; color: var(--text-whisper); }
   .footer .brand .ast { color: var(--text-whisper); }
 
+
+  /* KAJAL INSTAGRAM LINK */
+  .kajal-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--text-whisper);
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .kajal-link:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+  }
+
   /* CUSTOM PRACTICE INPUT - shown when "Other" is selected */
   .custom-input-wrapper {
     display: none;
@@ -559,7 +572,7 @@
   <div class="blue-rule"></div>
 
   <p>
-    I am Ar. Kajal Diwakar. I am the Creative Director at <span class="brand">[INSD]e<span class="ast">*</span></span> - Inquiries in Strategic Design, a multidisciplinary design consultancy practice based in Mangalore, founded together with Ar. Shruthadev Bantwal.
+    I am <a href="https://www.instagram.com/ar.kajal_diwakar_" target="_blank" rel="noopener noreferrer" class="kajal-link">Ar. Kajal Diwakar</a>. I am the Creative Director at <span class="brand">[INSD]e<span class="ast">*</span></span> - Inquiries in Strategic Design, a multidisciplinary design consultancy practice based in Mangalore, founded together with Ar. Shruthadev Bantwal.
   </p>
 
   <p>
@@ -578,14 +591,17 @@
     We believe equally in the traditional and the contemporary, in craft that has been passed down through hands, and in work that is asking entirely new questions. What we look for, always, is intention. Work that is honest. Work that rewards a longer look.
   </p>
 
-  <!-- IMAGE 2 - static -->
-  <div class="img-moment">
+  <!-- IMAGE 2 - clickable for curatorial insight -->
+  <div class="img-moment ai-trigger" onclick="getSpatialInsight()">
     <img
       src="SPATIAL_INTENTION_MOMENT.jpg"
-      alt="A contemporary Indian home with a Pichwai painting, carved column, cane furniture, and tropical greenery"
+      alt="A double-height living space with a heritage column, painted bull sculpture, cane furniture, and tropical greenery"
       onerror="this.style.display='none';"
     >
+    <p class="img-note">Click anywhere on the image for * Curatorial Insight</p>
   </div>
+  <div id="spatial-loading" class="loading-text">Consulting the eye...</div>
+  <div id="spatial-box" class="insight-box"></div>
 
   <div class="blue-rule"></div>
 
@@ -858,6 +874,43 @@
 
 
   // ── LANDING PAGE TRANSITION ──
+  // ── SPATIAL INSIGHTS (Image 2 - SPATIAL_INTENTION_MOMENT) ──
+  // Heritage carved column with verdigris capital, hand-painted bull sculpture,
+  // double-height void, cane planter's chair, teal handwoven rug, woven palm fan,
+  // black and white photo cluster, dark ceramic vessels, red oxide floor,
+  // sheer billowing curtains, tropical greenery, two figures in motion.
+
+  const SPATIAL_INSIGHTS = [
+    "The carved column standing at the centre of this room is not a structural element performing a structural role. It is a piece of heritage that has been given the dignity of context - placed where light falls across it, where the eye finds it naturally, where its presence commands rather than interrupts. This is what it means to curate a space around an object rather than an object around a space.",
+    "There are two figures moving through this room and neither of them stops to look at anything in it. That is the highest compliment a curated interior can receive - that the objects feel so resolved, so belonging, that life moves through them without self-consciousness. eYE works toward spaces where the art is noticed slowly, not announced loudly.",
+    "The hand-painted bull sculpture under the staircase is doing something architecturally precise. It activates a corner that would otherwise be dead space, holds the eye at plinth level before it travels up the staircase, and introduces colour - deep red, gold - in a room of otherwise restrained material. A single considered object can do this. One piece, placed correctly, changes the geometry of how a room is experienced.",
+    "The cluster of four black and white photographs on the wall is worth examining. None of them are large. None of them are particularly precious. But grouped with this specific intention - same frame size, same tonal register, same quiet subject matter - they become a considered act. eYE understands that curation is sometimes about editing down to the essential rather than adding to what is already there.",
+    "The teal handwoven rug underfoot is the room's most quietly ambitious decision. It holds everything above it - the cane furniture, the dark coffee table, the lamp - in a single chromatic field. Without it, the room fragments. With it, the furniture becomes a composition. Textiles at this scale are not accessories. They are the foundation on which every other curatorial decision rests.",
+    "The sheer curtain billowing in from the right is not a styling choice. It is evidence of a space that breathes - that the boundary between inside and outside has been deliberately kept porous. The tropical greenery beyond is part of the interior's palette. eYE considers what a space sees, not only what it contains. The view is part of the brief.",
+    "The woven palm-blade ceiling fan above is functioning as both an object and an instrument of light. At a certain hour, its shadow would move across the surfaces below - the sofa, the rug, the column - turning the ceiling into a participant in the room's daily life. Objects that respond to time, to season, to the angle of sun - these are the objects eYE is always looking for."
+  ];
+
+  function getSpatialInsight() {
+    const loader = document.getElementById('spatial-loading');
+    const box = document.getElementById('spatial-box');
+
+    box.style.display = 'none';
+    loader.style.display = 'block';
+
+    setTimeout(() => {
+      const pool = SPATIAL_INSIGHTS.filter((_, i) => i !== getSpatialInsight._last);
+      const pick = Math.floor(Math.random() * pool.length);
+      const text = pool[pick];
+      getSpatialInsight._last = SPATIAL_INSIGHTS.indexOf(text);
+
+      loader.style.display = 'none';
+      box.innerText = text;
+      box.style.display = 'block';
+    }, 1500);
+  }
+  getSpatialInsight._last = -1;
+
+
   // ── COLLABORATOR SELECT - show/hide custom input ──
   function handleCollaboratorChange() {
     const select = document.getElementById('collaborator-select');
