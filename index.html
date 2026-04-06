@@ -95,6 +95,15 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .dn-nav{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:1.5rem;border-top:0.5px solid var(--grey)}
 .dn-nav a{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);cursor:pointer;transition:opacity 0.2s;text-decoration:none}
 .dn-nav a:hover{opacity:0.6}
+.ss{position:relative;width:100%;max-width:480px;margin-top:3rem;overflow:hidden}
+.ss-slide{background:var(--white);padding:0.6rem 0.6rem 2.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.08),0 0 0 0.5px rgba(0,0,0,0.04);cursor:pointer;transform:rotate(-0.5deg);transition:transform 0.3s,box-shadow 0.3s,opacity 0.8s}
+.ss-slide:hover{transform:rotate(0) translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12)}
+.ss-img{width:100%;aspect-ratio:16/9;background:var(--light);overflow:hidden}
+.ss-img img{width:100%;height:100%;object-fit:cover}
+.ss-cap{padding:0.75rem 0.25rem 0}
+.ss-code{font-family:'Space Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:0.5px}
+.ss-name{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;margin-top:0.2rem;text-transform:lowercase}
+.ss-meta{font-family:'Space Mono',monospace;font-size:8px;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:0.3rem}
 
 .pg{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:2rem;max-width:640px}
 .p{background:var(--white);padding:0.6rem 0.6rem 2.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.08),0 0 0 0.5px rgba(0,0,0,0.04);transition:transform 0.3s,box-shadow 0.3s}
@@ -198,6 +207,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
       <p class="bt" style="margin-top:1rem;">The practice operates through seven domains of inquiry: Architecture is one of them. So is visualisation. So is research. So is art curation.</p>
       <p class="bt" style="margin-top:1rem;">A project might need a building, a brand, a spatial strategy, or a research brief. Often it needs several at once. The domains exist so that nothing is forced into a single discipline's frame.</p>
       <p class="bt" style="margin-top:1rem;"><span class="im">[INSD]e<span class="a">*</span></span> works collaboratively with researchers, designers from different fields, engineers and technical specialists, so that no problem is beyond scope and every solution can be strategically designed.</p>
+      <div class="ss" id="project-slideshow"></div>
       <div class="isv">DESIGN &nbsp;.&nbsp; RESEARCH &nbsp;.&nbsp; CONSULTANCY &nbsp;.&nbsp; COLLABORATIONS</div>
     </div>
     <a href="https://www.instagram.com/office.insde" target="_blank" rel="noopener" class="ias" style="text-decoration:none;">*</a>
@@ -535,6 +545,29 @@ function cl(id){
   document.getElementById('overlay-'+id).classList.remove('on');
   document.body.style.overflow='';
 }
+var slides=[
+{img:'images/env-001-south-elevation.jpg',code:'eNV.2026.001',name:"the engineer's residence",meta:'ARCHITECTURE + INTERIOR DESIGN',dom:'env'},
+{img:'images/env-004-community-centre.jpg',code:'eNV.2026.004',name:'the community centre',meta:'ARCHITECTURE',dom:'env'},
+{img:'images/env-005-multifamily-dwelling.jpg',code:'eNV.2026.005',name:'the multifamily dwelling',meta:'ARCHITECTURE DESIGN',dom:'env'},
+{img:'images/exp-003-m-house.jpg',code:'eXP.2026.003',name:'m house, ahmedabad',meta:'ARCHITECTURAL VISUALISATION',dom:'exp'},
+{img:'images/exp-001-thindi-mane.jpg',code:'eXP.2026.001',name:'bantwala thindi mane',meta:'NAMING + BRAND IDENTITY',dom:'exp'},
+{img:'images/epi-001-asf-report.jpg',code:'ePI.2025.001',name:'ahmedabad shopping festival',meta:'RESEARCH + DESIGN ADVISORY',dom:'epi'},
+{img:'images/exm-001-tilantar-aerial.jpg',code:'eXM.2025.001',name:'tilantar | micro library',meta:'COMPETITION ENTRY',dom:'exm'},
+{img:'images/eye-001-foyer.jpg',code:'eYE.2026.001',name:'the curated house',meta:'ART CURATION + VISUALISATION',dom:'eye'}
+];
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+shuffle(slides);
+var si=0;
+var ss=document.getElementById('project-slideshow');
+function showSlide(){
+  var s=slides[si];
+  ss.innerHTML='<div class="ss-slide" onclick="dom(\''+s.dom+'\')"><div class="ss-img"><img src="'+s.img+'" alt="'+s.name+'"></div><div class="ss-cap"><div class="ss-code">'+s.code+'</div><div class="ss-name">'+s.name+'</div><div class="ss-meta">'+s.meta+'</div></div></div>';
+  ss.querySelector('.ss-slide').style.opacity='0';
+  setTimeout(function(){ss.querySelector('.ss-slide').style.opacity='1';},50);
+  si=(si+1)%slides.length;
+}
+showSlide();
+setInterval(showSlide,4000);
 go('intro');
 setTimeout(function(){if(!document.getElementById('L').classList.contains('dn'))enterSite();},10000);
 </script>
