@@ -46,7 +46,8 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .nl{cursor:pointer;font-size:18px}
 .nk{display:flex;gap:1.8rem}
 .nk a{font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:#999;text-decoration:none;transition:color 0.2s}
-.nk a:hover,.nk a.on{color:var(--black)}
+.nk a:hover{color:var(--black)}
+.nk a.on{color:var(--blue)}
 
 .ct{max-width:960px;margin:0 auto;padding:0 3rem}
 .sc{padding:5rem 0}
@@ -96,7 +97,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .dn-nav a{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);cursor:pointer;transition:opacity 0.2s;text-decoration:none}
 .dn-nav a:hover{opacity:0.6}
 .ss{position:relative;width:100%;max-width:480px;margin-top:3rem;overflow:hidden}
-.ss-slide{background:var(--white);padding:0.6rem 0.6rem 2.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.08),0 0 0 0.5px rgba(0,0,0,0.04);cursor:pointer;transform:rotate(-0.5deg);transition:transform 0.3s,box-shadow 0.3s,opacity 0.8s}
+.ss-slide{background:var(--white);padding:0.6rem 0.6rem 2.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.08),0 0 0 0.5px rgba(0,0,0,0.04);cursor:pointer;transform:rotate(-0.5deg);transition:transform 0.3s,box-shadow 0.3s,opacity 1.5s}
 .ss-slide:hover{transform:rotate(0) translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12)}
 .ss-img{width:100%;aspect-ratio:16/9;background:var(--light);overflow:hidden}
 .ss-img img{width:100%;height:100%;object-fit:cover}
@@ -567,7 +568,7 @@ function showSlide(){
   si=(si+1)%slides.length;
 }
 showSlide();
-setInterval(showSlide,4000);
+setInterval(showSlide,6000);
 go('intro');
 setTimeout(function(){if(!document.getElementById('L').classList.contains('dn'))enterSite();},10000);
 </script>
