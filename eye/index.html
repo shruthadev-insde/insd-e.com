@@ -118,54 +118,7 @@
     color: var(--text);
   }
 
-  /* TOGGLE */
-  .toggle-bar {
-    display: flex;
-    border: 1px solid var(--rule);
-    margin: 3rem 0;
-    overflow: hidden;
-  }
-
-  .toggle-btn {
-    flex: 1;
-    padding: 1rem 1.2rem;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-whisper);
-    transition: all 0.3s ease;
-    text-align: center;
-    line-height: 1.5;
-  }
-
-  .toggle-btn:first-child {
-    border-right: 1px solid var(--rule);
-  }
-
-  .toggle-btn.active {
-    background: var(--blue);
-    color: white;
-  }
-
-  .toggle-btn .btn-sub {
-    display: block;
-    font-family: var(--sans);
-    font-size: 0.55rem;
-    font-weight: 300;
-    letter-spacing: 0.04em;
-    text-transform: none;
-    margin-top: 0.2rem;
-    opacity: 0.7;
-  }
-
   /* SECTIONS */
-  .path-section { display: none; animation: fadeIn 0.6s ease; }
-  .path-section.active { display: block; }
-
   /* IMAGES */
   .img-moment { margin: 2.2rem 0; position: relative; min-height: 120px; background: #F5F5F5; }
   .img-moment img { width: 100%; height: auto; display: block; }
@@ -330,7 +283,7 @@
     <!-- IMAGE 1 - clickable -->
     <div class="img-moment ai-trigger" onclick="getInsight()">
       <img src="CRAFT_MOMENT_STILL.jpg"
-        alt="A bedroom interior - warm teak furniture, cane headboard, a handcrafted dressing table, and afternoon light across a jute rug"
+        alt="A composed tableau - stone plinth table, dvarapala guardian, apsara figure, folk mask, dried botanicals, and kilim rug in afternoon light"
         onerror="this.style.display='none';">
       <p class="img-note">Click anywhere on the image for * Curatorial Insight</p>
     </div>
@@ -349,98 +302,11 @@
 
   </div>
 
-  <!-- TOGGLE BAR -->
-  <div class="toggle-bar">
-    <button class="toggle-btn active" id="btn-designers" onclick="switchPath('designers')">
-      FOR DESIGNERS
-      <span class="btn-sub">Looking to join INSD-eYE</span>
-    </button>
-    <button class="toggle-btn" id="btn-makers" onclick="switchPath('makers')">
-      FOR MAKERS
-      <span class="btn-sub">Looking to collaborate with us</span>
-    </button>
-  </div>
-
-
-  <!-- ═══════════════════════════════════════════════════ -->
-  <!-- DESIGNER PATH                                       -->
-  <!-- ═══════════════════════════════════════════════════ -->
-  <div id="path-designers" class="path-section active">
-
-    <p class="opening-sub" style="margin-bottom: 3rem;">To the visual curator. The designer who thinks before they make. The one who walks into a room and immediately understands what it is missing - and why.</p>
-
-    <p class="designer-callout">
-      We are looking for someone specific. Not a generalist. Not someone who is good at everything. Someone who is extraordinary at this one thing: understanding how objects, art, and spatial intention speak to each other.
-    </p>
-
-    <p>
-      <span class="preserve-case">INSD-eYE</span> needs a creative lead. Someone who will carry this domain of the practice forward - who will build the curatorial language, develop relationships with makers and collectors, and bring the aesthetic intelligence of eYE into every project <span class="brand">[INSD]e<span class="ast">*</span></span> takes on. This is not a supporting role. It is a founding one, for the domain.
-    </p>
-
-    <div class="blue-rule"></div>
-
-    <div class="what-we-need">
-      <span class="need-label">* What This Role Requires</span>
-
-      <div class="need-item">A trained eye - in visual arts, interior design, spatial curation, or a field we have not thought to list here but that you know qualifies you.</div>
-      <div class="need-item">The ability to hold a curatorial position and defend it. Not someone who agrees with the brief - someone who sharpens it.</div>
-      <div class="need-item">A genuine relationship with craft and making. You do not need to make things yourself. But you need to understand the people who do.</div>
-      <div class="need-item">Comfort working across spatial design, client conversations, and cultural programming simultaneously. eYE does not sit in one lane.</div>
-      <div class="need-item">An understanding that restraint is a skill. The best curatorial decisions are often about what you leave out.</div>
-    </div>
-
-    <div class="blue-rule"></div>
-
-    <p>
-      We are a young practice. We will not pretend otherwise. What we offer in return is creative authority over a domain that is still being built - the chance to define what <span class="preserve-case">INSD-eYE</span> actually becomes. The work will be rigorous. The standards will be non-negotiable. The scope, for the right person, will be as large as their ambition.
-    </p>
-
-    <p class="breath">If any part of this has caught your eye, we want to hear from you.</p>
-
-    <!-- DESIGNER REACH OUT FORM -->
-    <div class="reach-out">
-      <span class="reach-out-label">* Apply to INSD-eYE</span>
-      <p class="reach-out-intro">
-        No formal application. No long form. Just three things that tell us what we need to know.
-      </p>
-      <div class="reach-out-fields">
-        <div>
-          <span class="field-label">Portfolio link</span>
-          <input type="text" id="d-portfolio" placeholder="Your website, Behance, Instagram, or any link to your work">
-        </div>
-        <div>
-          <span class="field-label">Area of focus</span>
-          <input type="text" id="d-focus" placeholder="e.g. Spatial curation, Interior design, Art direction, Visual research...">
-        </div>
-        <div>
-          <span class="field-label">What caught your eYE?</span>
-          <textarea id="d-caught" rows="4" placeholder="Tell us what about INSD-eYE made you write. Be specific."></textarea>
-        </div>
-      </div>
-      <div class="reach-out-actions">
-        <button class="send-btn" onclick="sendDesignerForm()">Send *</button>
-        <a class="direct-mail" href="mailto:shruthadev@insd-e.com">Or write directly - shruthadev@insd-e.com</a>
-      </div>
-    </div>
-
-    <div class="closing-block">
-      <p style="font-style: italic; color: var(--text-light); margin-bottom: 1.5rem;">With intent,</p>
-      <p class="sig-name">Ar. Shruthadev Bantwal</p>
-      <div class="sig-role-poppins">Founder</div>
-      <div class="sig-mono"><span class="preserve-case">INSD-eYE</span> &nbsp;|&nbsp; INQUIRIES IN STRATEGIC DESIGN</div>
-      <div class="sig-mono">MANGALURU, KARNATAKA</div>
-      <div class="sig-contact-poppins">
-        <a href="tel:+919743219529">+91 97432 19529</a> &nbsp;|&nbsp; <a href="mailto:shruthadev@insd-e.com">shruthadev@insd-e.com</a>
-      </div>
-    </div>
-
-  </div>
-
-
+  <!-- MAKER PATH -->
   <!-- ═══════════════════════════════════════════════════ -->
   <!-- MAKER PATH                                          -->
   <!-- ═══════════════════════════════════════════════════ -->
-  <div id="path-makers" class="path-section">
+  <div id="path-makers">
 
     <p class="opening-sub" style="margin-bottom: 3rem;">To the maker, the collector, the one whose eye we trust.</p>
 
@@ -497,11 +363,6 @@
             <option value="kurustudio">Kuru Studio</option>
             <option value="crafters">Crafters Antique Shop</option>
             <option value="kalakar">Kalakar Design</option>
-            <option value="saltgrey">Salt & Grey</option>
-            <option value="csfurniture">C&S Furniture</option>
-            <option value="qibo">Qibo</option>
-            <option value="bindibrush">Bindi and Brush</option>
-            <option value="mochacat">Mocha Cat</option>
             <option value="other">Other - enter your practice name</option>
           </select>
         </div>
@@ -585,28 +446,16 @@
 
 <script>
 
-  // ── TOGGLE ──
-  function switchPath(path) {
-    document.getElementById('path-designers').classList.remove('active');
-    document.getElementById('path-makers').classList.remove('active');
-    document.getElementById('btn-designers').classList.remove('active');
-    document.getElementById('btn-makers').classList.remove('active');
-
-    document.getElementById('path-' + path).classList.add('active');
-    document.getElementById('btn-' + path).classList.add('active');
-  }
-
-
   // ── CURATORIAL INSIGHTS - Image 1 (CRAFT_MOMENT_STILL) ──
 
   const INSIGHTS = [
-    "The dressing table standing in the corner of this room is the piece that earns the longest look. Its angled legs, arched mirror, and compact drawers are the decisions of a maker who understood that a functional object and a considered object are not different things. eYE looks for exactly this - work where the craft is not applied on top of the function but has grown directly from it.",
-    "The afternoon light falling in diagonal stripes across the jute rug is not incidental. This room has been oriented, its window placed at precisely the height and proportion needed for light to become part of the interior. The rug receives it. The concrete floor holds it. Objects that live in this kind of light age well - they earn new readings with each hour of the day.",
-    "There is a young girl walking through this room in traditional dress, blurred in motion. She does not look at anything. She is simply inhabiting the space. That is what a resolved interior feels like - not a room that demands attention, but one that holds life without interrupting it. eYE works toward spaces that feel this way: finished without being frozen.",
-    "The cane panel on the headboard is doing something that most bedrooms never attempt. It brings material texture - woven, warm, slightly irregular - into a room of otherwise clean geometry. A single material decision of this quality changes the register of everything around it. The bed frame, the bench, the dressing table - all of them read differently because the cane is there.",
-    "Every piece of furniture in this room is made from the same family of warm teak. That consistency is a curatorial decision as deliberate as any artwork choice. When eYE builds a brief for a space, material coherence is part of the conversation from the beginning - not as uniformity, but as a shared language that allows individual objects to speak without competing.",
-    "The horizontal strip window framing tropical green is the most significant design move in this room, and it contains no object at all. It frames living material - coconut palms, monsoon green - as though it were a work on the wall. eYE understands that what a space looks out at is part of the brief. The view is not a backdrop. It is a participant.",
-    "The jute rug underfoot is carrying the warmth that the concrete floor deliberately withholds. This is a material conversation - cool and warm, hard and soft, permanent and replaceable - that gives the room its depth without requiring anything ornamental. The most considered spaces are often built from decisions like this: the quiet negotiation between two materials that know what the other needs."
+    "The apsara figure perched at the edge of the stone table with her legs dangling is the most precise curatorial decision in this entire composition. She is not displayed. She is placed - as though she arrived and sat down. That distinction is everything. eYE works toward objects that inhabit a space rather than decorate it. The difference is felt before it is understood.",
+    "Three objects on this table come from three entirely different cultural registers - a Balinese dvarapala guardian, a classical Indian bronze figure, a painted folk ritual mask. None of them belong to the same tradition. And yet the composition holds completely. Curation at this level is not about matching. It is about finding the frequency that objects from different worlds share, and building the space around that.",
+    "The diagonal afternoon light cutting across the kilim rug is not accidental. It was anticipated. A room composed this deliberately is also composed for the light that will move through it at a specific hour. eYE does not treat light as a finishing condition. It is part of the brief from the first conversation.",
+    "The hammered black chair in the foreground echoes the texture of the rough stone plinth without mimicking it. This is the kind of material conversation that resolves a space - not matching, not contrasting, but responding. Two objects from different makers, possibly different centuries, speaking the same material language. That is what a trained eye finds and a curated brief protects.",
+    "The dried botanical arrangement reaches upward with a logic that feels botanical rather than designed. It is not symmetrical. It is not contained. It extends past the frame of the threshold behind it and into the light. Organic material handled this way - with enough structure to hold and enough freedom to move - is one of the hardest things to get right. eYE considers what is living in a space as seriously as what is made.",
+    "The figure in white passing through the background does not stop. Does not look. The composition is so complete that life moves through it without interruption. That is the highest standard for a curated interior - not that it is admired, but that it is inhabited without self-consciousness. Objects that demand attention have already failed.",
+    "The stone plinth base of the table is the anchor that allows everything above it to be as expressive as it is. Raw, rough, geological - it roots the composition so completely that the apsara can dangle her legs and the botanical branches can reach freely without the whole thing feeling unresolved. Good curation always has a weight at the bottom that nobody talks about."
   ];
 
   function getInsight() {
@@ -753,11 +602,6 @@
       brasscraft: "Brass Craft", artisansvault: "The Artisans Vault",
       dharohar: "Dharohar", kurustudio: "Kuru Studio",
       crafters: "Crafters Antique Shop", kalakar: "Kalakar Design",
-      saltgrey: "Salt & Grey",
-      csfurniture: "C&S Furniture",
-      qibo: "Qibo",
-      bindibrush: "Bindi and Brush",
-      mochacat: "Mocha Cat",
       other: null
     };
 
@@ -788,26 +632,6 @@
       responseBox.style.display = 'block';
       btn.disabled = false;
     }, 1800);
-  }
-
-  function sendDesignerForm() {
-    const portfolio = document.getElementById('d-portfolio').value.trim();
-    const focus    = document.getElementById('d-focus').value.trim();
-    const caught   = document.getElementById('d-caught').value.trim();
-
-    if (!portfolio || !caught) {
-      alert('Please fill in at least your portfolio link and what caught your eYE.');
-      return;
-    }
-
-    const subject = encodeURIComponent('INSD-eYE Application');
-    const body = encodeURIComponent(
-      'Portfolio: ' + portfolio + '\n' +
-      'Area of Focus: ' + (focus || 'Not specified') + '\n\n' +
-      'What Caught My eYE:\n' + caught + '\n\n' +
-      '---\nSent via INSD-eYE Letter'
-    );
-    window.location.href = 'mailto:shruthadev@insd-e.com?subject=' + subject + '&body=' + body;
   }
 
   function sendMakerForm() {
