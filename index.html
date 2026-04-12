@@ -73,6 +73,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .dnw{flex:1}
 .dn2{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:-0.3px}
 .ds{font-family:'Space Mono',monospace;font-size:10px;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:0.2rem}
+.dp{font-family:'Space Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:0.5px;margin-top:0.3rem;opacity:0.7}
 .da{font-family:'Space Mono',monospace;font-size:14px;color:var(--blue);opacity:0;transform:translateX(-8px);transition:all 0.2s}
 .eb{display:flex;align-items:center;gap:0.75rem;margin-top:2.5rem;padding-top:1.5rem}
 .el{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#999}
@@ -161,12 +162,27 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .sft{font-family:'Space Mono',monospace;font-size:9px;color:var(--grey);letter-spacing:0.5px;text-transform:uppercase}
 .sfa{color:var(--blue);font-family:'Poppins',sans-serif;font-weight:700;font-size:14px}
 
+.collab-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--grey);border:0.5px solid var(--grey);margin:2.5rem 0}
+.collab-cell{background:var(--white);padding:1.25rem 1.5rem}
+.collab-title{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px;color:var(--blue)}
+.collab-desc{font-size:12px;color:#888;font-weight:300;line-height:1.5;margin-top:0.3rem}
+.faq-chips{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2rem}
+.faq-chip{font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:var(--blue);border:1px solid var(--blue);padding:0.5rem 1rem;cursor:pointer;transition:all 0.2s;background:var(--white)}
+.faq-chip:hover,.faq-chip.active{background:var(--blue);color:var(--white)}
+.faq-answer{font-size:13px;line-height:1.8;color:#555;font-weight:300;margin-top:1.5rem;max-width:640px;min-height:3rem;transition:opacity 0.3s}
+.collab-form{margin-top:3rem;padding-top:2rem;border-top:0.5px solid var(--grey)}
+.collab-form-title{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--blue);margin-bottom:1rem}
+.collab-form-desc{font-size:13px;color:#555;font-weight:300;line-height:1.8;margin-bottom:1.5rem;max-width:640px}
+.collab-btn{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--white);background:var(--blue);border:none;padding:0.75rem 2rem;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity 0.2s}
+.collab-btn:hover{opacity:0.8}
+
 @media(max-width:768px){
 .nav{padding:1rem 1.5rem}.nk{gap:1rem}.nk a{font-size:8px}.ct{padding:0 1.5rem}
 .ih{flex-direction:column;gap:2rem;padding:4rem 0 2rem}.ias{font-size:80px}.imk{font-size:28px}
 .p:nth-child(odd),.p:nth-child(even){transform:rotate(0)}.fl{grid-template-columns:1fr}
 .fpf{width:100%;max-width:280px}.sg{grid-template-columns:1fr}.dhc{font-size:24px}
 .rg{grid-template-columns:1fr}.wi{flex-wrap:wrap;gap:0.5rem}.wit{text-align:left;max-width:100%}
+.collab-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -186,7 +202,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
   <div class="nk">
     <a href="#" onclick="go('intro');return false;">ABOUT</a>
     <a href="#" onclick="go('domains');return false;">WORK</a>
-    <a href="#" onclick="go('work');return false;">INQUIRIES</a>
+    <a href="#" onclick="go('work');return false;">COLLABORATORS</a>
     <a href="#" onclick="go('founder');return false;">PEOPLE</a>
     <a href="#" onclick="go('contact');return false;">CONTACT</a>
   </div>
@@ -223,13 +239,13 @@ img{display:block;width:100%;height:100%;object-fit:cover}
   <div class="st" style="text-transform:none;font-family:'Poppins',sans-serif;font-weight:600;">e* — emergence</div>
   <p class="bt">Emergence is the condition through which everything connects. It is what appears when the parts of a system begin to behave as something greater than their sum. Each domain of inquiry within <span class="im">[INSD]e<span class="a">*</span></span> is not a silo. It is a root. Architecture informs research. Visualisation sharpens strategy. Education feeds back into experiment. The domains do not run parallel. They converge. These seven domains are the measurable means. What emerges from their intersection is the inquiry itself.</p>
   <div class="dl">
-    <div class="di" onclick="dom('env')"><div class="dc">eNV</div><div class="dnw"><div class="dn2">ENVIRONMENTS</div><div class="ds">Architecture &amp; Spatial Design</div></div><div class="da">&rarr;</div></div>
-    <div class="di" onclick="dom('exp')"><div class="dc">eXP</div><div class="dnw"><div class="dn2">EXPERIENCES</div><div class="ds">Visualisation &amp; Immersive Media</div></div><div class="da">&rarr;</div></div>
-    <div class="di" onclick="dom('epi')"><div class="dc">ePI</div><div class="dnw"><div class="dn2">EPISTEMICS</div><div class="ds">Research &amp; Strategic Consulting</div></div><div class="da">&rarr;</div></div>
+    <div class="di" onclick="dom('env')"><div class="dc">eNV</div><div class="dnw"><div class="dn2">ENVIRONMENTS</div><div class="ds">Architecture &amp; Spatial Design</div><div class="dp">3 active projects &rarr;</div></div><div class="da">&rarr;</div></div>
+    <div class="di" onclick="dom('exp')"><div class="dc">eXP</div><div class="dnw"><div class="dn2">EXPERIENCES</div><div class="ds">Visualisation &amp; Immersive Media</div><div class="dp">2 active projects &rarr;</div></div><div class="da">&rarr;</div></div>
+    <div class="di" onclick="dom('epi')"><div class="dc">ePI</div><div class="dnw"><div class="dn2">EPISTEMICS</div><div class="ds">Research &amp; Strategic Consulting</div><div class="dp">1 active project &rarr;</div></div><div class="da">&rarr;</div></div>
     <div class="di" onclick="dom('edu')"><div class="dc">eDU</div><div class="dnw"><div class="dn2">EDUCATION</div><div class="ds">Academic Engagements</div></div><div class="da">&rarr;</div></div>
-    <div class="di" onclick="dom('exm')"><div class="dc">eXM</div><div class="dnw"><div class="dn2">EXPERIMENTS</div><div class="ds">Speculative &amp; Experimental Design</div></div><div class="da">&rarr;</div></div>
+    <div class="di" onclick="dom('exm')"><div class="dc">eXM</div><div class="dnw"><div class="dn2">EXPERIMENTS</div><div class="ds">Speculative &amp; Experimental Design</div><div class="dp">1 active project &rarr;</div></div><div class="da">&rarr;</div></div>
     <div class="di" onclick="dom('exc')"><div class="dc">eXC</div><div class="dnw"><div class="dn2">EXCHANGES</div><div class="ds">Public Programming &amp; Activation</div></div><div class="da">&rarr;</div></div>
-    <div class="di" onclick="dom('eye')"><div class="dc">eYE</div><div class="dnw"><div class="dn2">EYE</div><div class="ds">Visual Curation &amp; Art Sourcing</div></div><div class="da">&rarr;</div></div>
+    <div class="di" onclick="dom('eye')"><div class="dc">eYE</div><div class="dnw"><div class="dn2">EYE</div><div class="ds">Visual Curation &amp; Art Sourcing</div><div class="dp">1 active project &rarr;</div></div><div class="da">&rarr;</div></div>
   </div>
   <div class="eb"><div class="el">EMERGENCE</div><div class="eln"></div><div class="eas">*</div></div>
   <div style="font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:#999;margin-top:1.5rem;max-width:640px;line-height:1.8;">"EVENTUALLY EVERYTHING CONNECTS — PEOPLE, IDEAS, OBJECTS. THE QUALITY OF THE CONNECTIONS IS THE KEY TO QUALITY PER SE." — CHARLES EAMES</div>
@@ -342,21 +358,45 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 
 </div></div>
 
-<!-- WORK -->
+<!-- COLLABORATORS -->
 <div id="sec-work">
 <div class="ct"><div class="sc">
-  <div class="sn">03 &nbsp; INQUIRIES</div>
-  <div class="st">ACTIVE INQUIRIES</div>
-  <div class="wl">
-    <div class="wi"><div class="wic">eNV.2026.001</div><div class="win">the engineer's residence</div><div class="wit">ARCHITECTURE + INTERIOR DESIGN</div></div>
-    <div class="wi"><div class="wic">eNV.2026.003</div><div class="win">ice cream parlour</div><div class="wit">INTERIOR DESIGN + SPATIAL BRANDING</div></div>
-    <div class="wi"><div class="wic">eNV.2026.005</div><div class="win">multifamily dwelling</div><div class="wit">ARCHITECTURE DESIGN</div></div>
-    <div class="wi"><div class="wic">eXP.2026.003</div><div class="win">m house</div><div class="wit">ARCHITECTURAL VISUALISATION</div></div>
-    <div class="wi"><div class="wic">eXP.2026.001</div><div class="win">bantwala thindi mane</div><div class="wit">NAMING + BRAND IDENTITY</div></div>
+  <div class="sn">03 &nbsp; COLLABORATORS</div>
+  <div class="st" style="text-transform:none;font-family:'Poppins',sans-serif;font-weight:600;">the network</div>
+  <p class="bt"><span class="im">[INSD]e<span class="a">*</span></span> operates on a collaborative model. The practice does not scale by headcount. It scales by network. Every project brings together the right people for the right problem - architects, engineers, researchers, artists, fabricators, each a specialist in their own discipline. The work is better because no one is asked to be something they are not.</p>
+  <p class="bt" style="margin-top:1rem;">This is an open call to designers, technicians, and specialists who believe in working across disciplines. If your craft intersects with strategic design, spatial thinking, or any of the seven domains of inquiry, there is a conversation to be had.</p>
 
-    <div class="wi"><div class="wic">eXM.2026.001</div><div class="win">office.insde</div><div class="wit">DOCUMENTATION + STUDIO SETUP</div></div>
-    <div class="wi"><div class="wic">eDU.2026.001</div><div class="win">introduction to ai</div><div class="wit">CHOICE BASED ELECTIVE FOR B.ARCH</div></div>
+  <div class="collab-grid">
+    <div class="collab-cell"><div class="collab-title">ARCHITECTS & SPATIAL DESIGNERS</div><div class="collab-desc">Design partners for residential, commercial, and institutional projects</div></div>
+    <div class="collab-cell"><div class="collab-title">STRUCTURAL & MEP ENGINEERS</div><div class="collab-desc">Technical specialists for construction and building systems</div></div>
+    <div class="collab-cell"><div class="collab-title">INTERIOR DESIGNERS & STYLISTS</div><div class="collab-desc">Spatial styling, material selection, and interior detailing</div></div>
+    <div class="collab-cell"><div class="collab-title">GRAPHIC & BRAND DESIGNERS</div><div class="collab-desc">Visual identity, publication design, and brand systems</div></div>
+    <div class="collab-cell"><div class="collab-title">ARTISTS & CURATORS</div><div class="collab-desc">Art sourcing, curation, and gallery programming for spaces</div></div>
+    <div class="collab-cell"><div class="collab-title">RESEARCHERS & ACADEMICS</div><div class="collab-desc">Design research, housing studies, and strategic advisory</div></div>
+    <div class="collab-cell"><div class="collab-title">PHOTOGRAPHERS & FILMMAKERS</div><div class="collab-desc">Project documentation, spatial storytelling, and portfolio production</div></div>
+    <div class="collab-cell"><div class="collab-title">FABRICATORS & CONTRACTORS</div><div class="collab-desc">Construction, material fabrication, and on-site execution</div></div>
   </div>
+
+  <div style="margin-top:3rem;">
+    <div class="nl2">FREQUENTLY ASKED</div>
+    <div class="faq-chips" id="faq-chips">
+      <div class="faq-chip" onclick="showFaq(0)">Do I need to be based in Mangalore?</div>
+      <div class="faq-chip" onclick="showFaq(1)">Is this a job application?</div>
+      <div class="faq-chip" onclick="showFaq(2)">How does the fee structure work?</div>
+      <div class="faq-chip" onclick="showFaq(3)">What kind of projects will I work on?</div>
+      <div class="faq-chip" onclick="showFaq(4)">I don't fit any category</div>
+      <div class="faq-chip" onclick="showFaq(5)">How do I know if I'm the right fit?</div>
+      <div class="faq-chip" onclick="showFaq(6)">Will my work be credited?</div>
+    </div>
+    <div class="faq-answer" id="faq-answer">Select a question above.</div>
+  </div>
+
+  <div class="collab-form">
+    <div class="collab-form-title">WRITE TO US</div>
+    <p class="collab-form-desc">If your craft intersects with any of the seven domains of inquiry, we would like to hear from you. Tell us who you are, what you do, and why you believe in working across disciplines.</p>
+    <a class="collab-btn" href="mailto:office.insde@gmail.com?subject=Collaboration Inquiry | [Your Name] | [Your Profession]&body=Name:%0D%0A%0D%0AProfession:%0D%0A%0D%0AWhy I want to collaborate with [INSD]e*:%0D%0A%0D%0A">SEND A COLLABORATION INQUIRY</a>
+  </div>
+
 </div></div>
 </div>
 
@@ -380,6 +420,22 @@ img{display:block;width:100%;height:100%;object-fit:cover}
       </div>
     </div>
   </div>
+  <hr class="dv" style="margin:4rem 0;">
+  <div class="fl">
+    <div class="fp">
+      <div class="fpf"><a href="https://www.instagram.com/ar.kajal_diwakar_" target="_blank" rel="noopener"><img src="images/people-kajal.jpg" alt="Ar Kajal Diwakar Creative Director INSD-eYE art curation interior design"></a></div>
+      <div class="fpa">*</div>
+    </div>
+    <div>
+      <div class="fn">AR. KAJAL DIWAKAR</div>
+      <div class="ft">CREATIVE DIRECTOR INSD-eYE</div>
+      <p class="fb">Architect based out of Ahmedabad, Gujarat. Masters in Housing Design from CEPT University and experience as a Teaching Associate. Experience in Interior Design with a keen interest in art and enhancing spaces using art. Specialisation in art curation and collection, housing design and spatial styling.</p>
+      <div class="fd">
+        <div class="fdi">B.ARCH + M.ARCH (HOUSING DESIGN) | CEPT UNIVERSITY, AHMEDABAD</div>
+        <div class="fdi">COA REG. CA / XXXX / XXXXXX</div>
+      </div>
+    </div>
+  </div>
 
 </div></div>
 </div>
@@ -395,10 +451,10 @@ img{display:block;width:100%;height:100%;object-fit:cover}
       <div class="cl">SVS COLLEGE ROAD, NR. BANTWAL BYPASS JN.</div>
       <div class="cl">BANTWAL 574-211</div>
     </a>
-    <div class="cl" style="margin-top:0.3rem;"><a href="mailto:kajal@insd-e.com" style="font-family:'Poppins',sans-serif;text-transform:lowercase;font-size:11px;">kajal@insd-e.com</a></div>
+    <div class="cl" style="margin-top:0.3rem;"><a href="mailto:office.insde@gmail.com" style="font-family:'Poppins',sans-serif;text-transform:lowercase;font-size:11px;">office.insde@gmail.com</a></div>
     <div style="margin-top:2.5rem;">
       <div class="cl">AR. SHRUTHADEV BANTWAL</div>
-      <div class="cl">+91 9743219529 &nbsp; | &nbsp; <a href="mailto:kajal@insd-e.com" style="font-family:'Poppins',sans-serif;text-transform:lowercase;font-size:11px;">kajal@insd-e.com</a></div>
+      <div class="cl">+91 9743219529 &nbsp; | &nbsp; <a href="mailto:shruthadev@insd-e.com" style="font-family:'Poppins',sans-serif;text-transform:lowercase;font-size:11px;">shruthadev@insd-e.com</a></div>
       <div style="margin-top:0.3rem;"><a href="https://www.instagram.com/shruthadev_bantwal" target="_blank" rel="noopener" style="font-family:'Poppins',sans-serif;font-size:11px;color:var(--blue);text-decoration:none;text-transform:lowercase;">@shruthadev_bantwal</a></div>
     </div>
 
@@ -525,6 +581,25 @@ function showSlide(){
 }
 showSlide();
 setInterval(showSlide,6000);
+var faqs=[
+"No. The network is not limited by geography. We work with collaborators across India and beyond. What matters is the quality of the work and the willingness to think across disciplines.",
+"No. This is not employment. Collaborators work on a project basis, retaining their independence and their own practice. You are brought in for what you do best.",
+"Fees are discussed per project. Every collaborator is compensated fairly for their contribution. The terms are agreed before work begins.",
+"It depends on the domain. A structural engineer might work on a residence. A graphic designer might work on a brand identity. A researcher might work on a feasibility study. The brief determines the team.",
+"The categories are indicative, not exhaustive. If your work intersects with design, research, or spatial thinking in any form, write to us.",
+"If you care about the quality of your craft, if you can work with people from other disciplines without ego, and if you believe design is a form of inquiry, you are the right fit.",
+"Always. Collaboration at [INSD]e* is a principle, not a courtesy. Every contributor is credited explicitly in all project documentation and communication."
+];
+window.showFaq=function(i){
+  document.getElementById('faq-answer').style.opacity='0';
+  setTimeout(function(){
+    document.getElementById('faq-answer').textContent=faqs[i];
+    document.getElementById('faq-answer').style.opacity='1';
+  },300);
+  var chips=document.querySelectorAll('.faq-chip');
+  for(var j=0;j<chips.length;j++)chips[j].classList.remove('active');
+  chips[i].classList.add('active');
+};
 go('intro');
 setTimeout(function(){if(!document.getElementById('L').classList.contains('dn'))enterSite();},10000);
 </script>
