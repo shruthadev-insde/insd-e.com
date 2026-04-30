@@ -603,7 +603,7 @@ document.addEventListener('keydown',function(e){
   if(document.activeElement&&(document.activeElement.tagName==='INPUT'||document.activeElement.tagName==='TEXTAREA'))return;
   guestBuffer+=e.key;
   if(guestBuffer.length>20)guestBuffer=guestBuffer.slice(-20);
-  if(guestBuffer.indexOf('[INSD]e*')>-1){
+  if(guestBuffer.indexOf('insde')>-1){
     guestBuffer='';
     guestActive=true;
     document.getElementById('guest-overlay').classList.add('on');
