@@ -236,16 +236,6 @@
       display: block;
     }
 
-    /* Crossed-rule composition */
-    .ph::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--mid-grey) calc(50% - 0.5px), var(--mid-grey) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
-        linear-gradient(to bottom left,  transparent calc(50% - 0.5px), var(--mid-grey) calc(50% - 0.5px), var(--mid-grey) calc(50% + 0.5px), transparent calc(50% + 0.5px));
-      opacity: 0.5;
-    }
 
     .ph-caption {
       position: absolute;
@@ -1389,7 +1379,6 @@
       </div>
 
       <div class="reg-card bespoke">
-        <div class="ph" style="aspect-ratio:4/5; margin:-28px -24px 20px; width:calc(100% + 48px); border-bottom:1px dashed var(--blue); background-image:url('register-bespoke.jpg'); background-size:cover; background-position:center;"></div>
         <div class="reg-name">BESPOKE</div>
         <div class="reg-price italic-alt">A different conversation.</div>
         <p class="reg-body">This does not begin with a configurator. It begins with a meeting. The Sky City Accord system is the starting language. The client's life, collection, and history is the content.</p>
@@ -1642,9 +1631,28 @@
     </div>
 
     <!-- Two large 16:9 render comparisons -->
-    <div class="render-compare rv" style="display:flex; flex-direction:column; gap:1.5rem; margin-top:3rem;">
-      <div class="ph" style="aspect-ratio:16/9; position:relative; background-image:url('render-current.jpg'); background-size:cover; background-position:center;"></div>
-      <div class="ph" style="aspect-ratio:16/9; position:relative; background-image:url('render-proposed.jpg'); background-size:cover; background-position:center;"></div>
+    <div class="render-compare rv" style="display:flex; flex-direction:column; gap:2.4rem; margin-top:3rem;">
+
+      <div>
+        <div style="display:flex; align-items:baseline; gap:1rem; margin-bottom:0.8rem;">
+          <span style="font-family:var(--font-mono); font-size:0.58rem; letter-spacing:0.18em; color:var(--mid-grey); text-transform:uppercase;">01</span>
+          <span style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.12em; color:var(--near-black); text-transform:uppercase;">Current Visualisation</span>
+          <span style="flex:1; height:1px; background:var(--light-grey); align-self:center;"></span>
+          <span style="font-family:var(--font-sans); font-size:0.72rem; color:var(--mid-grey); font-style:italic;">Corporate render aesthetic</span>
+        </div>
+        <div class="ph" style="aspect-ratio:16/9; position:relative; background-image:url('render-current.jpg'); background-size:cover; background-position:center;"></div>
+      </div>
+
+      <div>
+        <div style="display:flex; align-items:baseline; gap:1rem; margin-bottom:0.8rem;">
+          <span style="font-family:var(--font-mono); font-size:0.58rem; letter-spacing:0.18em; color:var(--blue); text-transform:uppercase;">02</span>
+          <span style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.12em; color:var(--near-black); text-transform:uppercase;">Proposed Visualisation</span>
+          <span style="flex:1; height:1px; background:var(--light-grey); align-self:center;"></span>
+          <span style="font-family:var(--font-sans); font-size:0.72rem; color:var(--mid-grey); font-style:italic;">Inhabited render aesthetic</span>
+        </div>
+        <div class="ph" style="aspect-ratio:16/9; position:relative; background-image:url('render-proposed.jpg'); background-size:cover; background-position:center;"></div>
+      </div>
+
     </div>
 
     <p class="close-line rv" style="margin-top:2.5rem; text-align:left; font-size:0.75rem;">This is what Yamuna Sky City could feel like from the inside.</p>
