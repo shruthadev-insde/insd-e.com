@@ -184,6 +184,22 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .rg{grid-template-columns:1fr}.wi{flex-wrap:wrap;gap:0.5rem}.wit{text-align:left;max-width:100%}
 .collab-grid{grid-template-columns:1fr}
 }
+
+#guest-overlay{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--blue);z-index:9998;overflow-y:auto}
+#guest-overlay.on{display:flex;flex-direction:column;align-items:center;justify-content:center}
+#guest-input-wrap{text-align:center}
+#guest-input{font-family:'Space Mono',monospace;font-size:14px;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,0.3);color:var(--white);padding:0.5rem 0;text-align:center;outline:none;width:280px;letter-spacing:1px}
+#guest-input::placeholder{color:rgba(255,255,255,0.3)}
+#guest-hint{font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:2px;margin-top:1rem}
+#guest-error{font-family:'Space Mono',monospace;font-size:9px;color:rgba(255,100,100,0.8);text-transform:uppercase;letter-spacing:1px;margin-top:0.75rem;min-height:1rem}
+#guest-welcome{display:none;text-align:center;padding:3rem}
+#guest-welcome.on{display:block}
+#guest-welcome-ast{font-family:'Poppins',sans-serif;font-weight:700;font-size:72px;color:var(--white);margin-bottom:2rem}
+#guest-welcome-line1{font-family:'Poppins',sans-serif;font-size:18px;font-weight:600;color:var(--white);margin-bottom:0.5rem}
+#guest-welcome-line2{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.6);margin-bottom:0.5rem;line-height:1.8;max-width:480px;margin-left:auto;margin-right:auto}
+#guest-welcome-line3{font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.3);margin-top:2rem}
+#guest-enter{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);background:var(--white);border:none;padding:0.75rem 2rem;cursor:pointer;margin-top:2rem;transition:opacity 0.2s}
+#guest-enter:hover{opacity:0.8}
 </style>
 </head>
 <body>
@@ -558,7 +574,73 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 </div>
 </div>
 
+<!-- GUEST SPACE -->
+<div id="guest-overlay">
+  <div id="guest-input-wrap">
+    <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:48px;color:var(--white);margin-bottom:2rem;">*</div>
+    <input type="password" id="guest-input" placeholder="enter passphrase" onkeydown="if(event.key==='Enter')checkGuest()">
+    <div id="guest-hint">GUEST ACCESS</div>
+    <div id="guest-error"></div>
+  </div>
+  <div id="guest-welcome">
+    <div id="guest-welcome-ast">*</div>
+    <div id="guest-welcome-line1">welcome to the inquiry.</div>
+    <div id="guest-welcome-line2">This presentation has been prepared exclusively for you. Every detail has been considered, every decision deliberate. What follows is not a pitch. It is a proposition.</div>
+    <div id="guest-welcome-line3">PREPARED BY [INSD]e* — INQUIRIES IN STRATEGIC DESIGN</div>
+    <button id="guest-enter" onclick="enterGuest()">ENTER PRESENTATION</button>
+  </div>
+</div>
+
 <script>
+// GUEST SPACE
+var guestHash='a3f2c8d1'; // hash of passphrase - change this when you change the passphrase
+var guestPassphrase='insde2026'; // change this to set a new passphrase
+var guestBuffer='';
+var guestActive=false;
+
+document.addEventListener('keydown',function(e){
+  if(guestActive)return;
+  if(document.activeElement&&(document.activeElement.tagName==='INPUT'||document.activeElement.tagName==='TEXTAREA'))return;
+  guestBuffer+=e.key;
+  if(guestBuffer.length>20)guestBuffer=guestBuffer.slice(-20);
+  if(guestBuffer.indexOf('[INSD]e*')>-1){
+    guestBuffer='';
+    guestActive=true;
+    document.getElementById('guest-overlay').classList.add('on');
+    setTimeout(function(){document.getElementById('guest-input').focus();},300);
+  }
+});
+
+function checkGuest(){
+  var input=document.getElementById('guest-input').value;
+  if(input===guestPassphrase){
+    document.getElementById('guest-input-wrap').style.display='none';
+    document.getElementById('guest-welcome').classList.add('on');
+  } else {
+    document.getElementById('guest-error').textContent='INCORRECT PASSPHRASE';
+    document.getElementById('guest-input').value='';
+    setTimeout(function(){document.getElementById('guest-error').textContent='';},2000);
+  }
+}
+
+function enterGuest(){
+  // redirect to guest presentation page
+  window.location.href='guest/index.html';
+}
+
+function closeGuest(){
+  document.getElementById('guest-overlay').classList.remove('on');
+  document.getElementById('guest-input-wrap').style.display='block';
+  document.getElementById('guest-welcome').classList.remove('on');
+  document.getElementById('guest-input').value='';
+  guestActive=false;
+}
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&guestActive)closeGuest();
+});
+
+// LANDING
 function enterSite(){
   document.getElementById('La').classList.add('off');
   document.getElementById('Lh').classList.add('hi');
@@ -568,7 +650,11 @@ function enterSite(){
     document.getElementById('S').style.display='block';
     setTimeout(function(){document.getElementById('L').classList.add('dn');},600);
   },1600);
+  history.pushState({section:'intro'},'','#about');
 }
+
+// NAVIGATION WITH HISTORY
+var currentSection='intro';
 function go(n){
   var s=['intro','domains','domain-detail','work','founder','contact'];
   for(var i=0;i<s.length;i++){var e=document.getElementById('sec-'+s[i]);if(e)e.style.display=(s[i]===n)?'block':'none';}
@@ -577,21 +663,73 @@ function go(n){
   var a=document.querySelectorAll('.nk a');for(var i=0;i<a.length;i++)a[i].classList.remove('on');
   var m={intro:0,domains:1,work:2,founder:3,contact:4};
   if(m[n]!==undefined&&a[m[n]])a[m[n]].classList.add('on');
+  currentSection=n;
+  var hashMap={intro:'about',domains:'work','domain-detail':'work',work:'collaborators',founder:'people',contact:'contact'};
+  var hash=hashMap[n]||n;
+  if(history.state===null||history.state.section!==n){
+    history.pushState({section:n,domain:null},'','#'+hash);
+  }
 }
+
 function dom(id){
   go('domain-detail');
   var d=document.querySelectorAll('.dd');for(var i=0;i<d.length;i++)d[i].classList.remove('on');
   document.getElementById('domain-'+id).classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
+  history.pushState({section:'domain-detail',domain:id},'','#'+id);
 }
+
 function op(id){
   document.getElementById('overlay-'+id).classList.add('on');
   document.body.style.overflow='hidden';
+  history.pushState({section:'overlay',overlay:id},'','#project-'+id);
 }
+
 function cl(id){
   document.getElementById('overlay-'+id).classList.remove('on');
   document.body.style.overflow='';
+  history.back();
 }
+
+// HANDLE BACK BUTTON
+window.addEventListener('popstate',function(e){
+  // Close any open overlays
+  var overlays=document.querySelectorAll('.ov.on');
+  for(var i=0;i<overlays.length;i++){overlays[i].classList.remove('on');}
+  document.body.style.overflow='';
+
+  if(e.state&&e.state.section==='overlay'){
+    document.getElementById('overlay-'+e.state.overlay).classList.add('on');
+    document.body.style.overflow='hidden';
+  } else if(e.state&&e.state.section==='domain-detail'&&e.state.domain){
+    go('domain-detail');
+    var d=document.querySelectorAll('.dd');for(var i=0;i<d.length;i++)d[i].classList.remove('on');
+    document.getElementById('domain-'+e.state.domain).classList.add('on');
+  } else if(e.state&&e.state.section){
+    go(e.state.section);
+  } else {
+    go('intro');
+  }
+});
+
+// HANDLE INITIAL HASH ON PAGE LOAD
+function loadFromHash(){
+  var hash=window.location.hash.replace('#','');
+  if(!hash||hash==='about'){go('intro');return;}
+  var hashToSection={work:'domains',collaborators:'work',people:'founder',contact:'contact'};
+  if(hashToSection[hash]){go(hashToSection[hash]);return;}
+  var domains=['env','exp','epi','edu','exm','exc','eye'];
+  if(domains.indexOf(hash)>-1){dom(hash);return;}
+  if(hash.indexOf('project-')===0){
+    var pid=hash.replace('project-','');
+    var overlay=document.getElementById('overlay-'+pid);
+    if(overlay){op(pid);}
+    return;
+  }
+  go('intro');
+}
+
+// SLIDESHOW
 var slides=[
 {img:'images/env-001-south-elevation.jpg',code:'eNV.2026.001',name:"the engineer's residence",meta:'ARCHITECTURE + INTERIOR DESIGN',dom:'env'},
 {img:'images/env-004-community-centre.jpg',code:'eNV.2026.004',name:'the community centre',meta:'ARCHITECTURE',dom:'env'},
@@ -613,6 +751,8 @@ function showSlide(){
 }
 showSlide();
 setInterval(showSlide,6000);
+
+// FAQ
 var faqs=[
 "No. The network is not limited by geography. We work with collaborators across India and beyond. What matters is the quality of the work and the willingness to think across disciplines.",
 "No. This is not employment. Collaborators work on a project basis, retaining their independence and their own practice. You are brought in for what you do best.",
@@ -632,7 +772,9 @@ window.showFaq=function(i){
   for(var j=0;j<chips.length;j++)chips[j].classList.remove('active');
   chips[i].classList.add('active');
 };
-go('intro');
+
+// INIT
+loadFromHash();
 setTimeout(function(){if(!document.getElementById('L').classList.contains('dn'))enterSite();},10000);
 </script>
 </body>
