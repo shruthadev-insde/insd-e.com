@@ -256,9 +256,9 @@ body { font-family: var(--sans); font-size:16px; }
 .ac-reveal-inhabit { font-family:var(--serif); font-size:0.93rem; color:var(--fg3); line-height:1.75; max-width:500px; margin-bottom:2.8rem; }
 /* ── SLIDESHOW ──────────────────────────────────────────────────── */
 /* ── SLIDESHOW ───────────────────────────────────────────────── */
-#phase-slideshow { padding:0; overflow:hidden; position:relative; display:block; }
+#phase-slideshow { padding:0; overflow:hidden; position:relative; display:flex; flex-direction:column; }
 .ac-slide-img-area {
-  position:absolute; inset:0; overflow:hidden;
+  flex:1; position:relative; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
 }
 .ac-slide-bg-fill { position:absolute; inset:0; z-index:0; background:#1A1510; transition:background 0.9s; }
